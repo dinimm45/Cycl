@@ -1,0 +1,435 @@
+.body {
+
+  -youbkit-touch-callout: none; /* iOS Safari */
+    -youbkit-user-select: none;   /* Chrome 6.0+, Safari 3.1+, Edge & Opera 15+ */
+    -moz-user-select: none;       /* Firefox */
+    -ms-user-select: none;        /* IE 10+ and Edge */
+    user-select: none;
+
+}
+
+
+.topnav {
+  overflow: hidden;
+  background-color: white;
+  position: relative;
+}
+
+/* Hide the links inside the navigation menu (except for logo/home) */
+.topnav #myLinks {
+  display: none;
+}
+
+/* Style navigation menu links */
+.topnav a {
+  color: #52b459;
+  padding: 10px 12px;
+  text-decoration: none;
+  font-size: 17px;
+  display: block;
+}
+
+/* Style the hamburger menu */
+.topnav a.icon {
+  background: white;
+  color: #52b459
+  display: block;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+/* Add a grey background color on mouse-over */
+.topnav a:hover {
+  background-color: white;
+  color: #52b459;
+}
+
+/* Style the active link (or home/logo) */
+.active {
+  background-color: white;
+  color: white;
+}
+
+.loginbtn {
+  border-radius: 12px;
+  background-color: #52b459;
+  border: 0px;
+  position: fixed; /* or absolute */
+ top: 50%;
+ left: 30%;
+}
+
+.rgstr{
+  background-color: white;
+  color: #52b459;
+  align-content: center;
+  position: fixed;
+  background-color: white;
+  border: 0px;
+  top: 60%;
+  left:32%;
+
+}
+
+.mbmr{
+color: #52b459;
+position: fixed;
+left:25%;
+top:65%;
+background-color: white;
+border: 0px;
+
+}
+.logo{
+position: fixed;
+left: 35%;
+
+}
+.scannerbtn{
+  position: fixed;
+  left: 40%;
+  top:95%;
+  background-color:#52b459;
+  color:white;
+  border:0px;
+  border-radius:12px;
+}
+
+.inputemail{
+  position:fixed;
+  left:33%;
+  top:30%;
+  border-top:hidden;
+  border-right:hidden;
+  border-left:hidden;
+
+}
+.inputpassword{
+position:fixed;
+left:33%;
+top:40%;
+border-top:hidden;
+border-right:hidden;
+border-left:hidden;
+
+
+}
+
+.hrcolor {
+    background-color: #008CBA;
+}
+
+.html{
+  background: #white;
+}
+
+
+
+.lds-ellipsis div {
+  position: absolute;
+  top: 33px;
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  background: #52b459;
+  animation-timing-function: cubic-bezier(0, 1, 1, 0);
+}
+.lds-ellipsis div:nth-child(1) {
+  left: 8px;
+  animation: lds-ellipsis1 0.6s infinite;
+}
+.lds-ellipsis div:nth-child(2) {
+  left: 8px;
+  animation: lds-ellipsis2 0.6s infinite;
+}
+.lds-ellipsis div:nth-child(3) {
+  left: 32px;
+  animation: lds-ellipsis2 0.6s infinite;
+}
+.lds-ellipsis div:nth-child(4) {
+  left: 56px;
+  animation: lds-ellipsis3 0.6s infinite;
+}
+@keyframes lds-ellipsis1 {
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@keyframes lds-ellipsis3 {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(0);
+  }
+}
+@keyframes lds-ellipsis2 {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(24px, 0);
+  }
+}
+
+/*under er for displayen for pantestedet og for kartet
+/* Always set the map height explicitly to define the size of the div
+ * element that contains the map. */
+#map {
+  height: 90%;
+}
+/* Optional: Makes the sample page fill the window. */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+#overlay {
+position: bottom;
+display: none;
+width: 100%;
+height: 45%;
+top: 0;
+left: 0;
+right: 0;
+bottom: 0;
+background-color: rgba(0,0,0,0.5);
+z-index: 2;
+cursor: pointer;
+}
+
+#text{
+position: absolute;
+top: 130%;
+left: 50%;
+font-size: 50px;
+color: white;
+transform: translate(-50%,-50%);
+-ms-transform: translate(-50%,-50%);
+}
+
+/* The Modal (background) */
+.modal {
+display: none; /* Hidden by default */
+position: fixed; /* Stay in place */
+z-index: 1; /* Sit on top */
+left: 0;
+top: 0;
+width: 100%; /* Full width */
+height: 100%; /* Full height */
+overflow: auto; /* Enable scroll if needed */
+background-color: rgb(0,0,0); /* Fallback color */
+background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+-webkit-animation-name: fadeIn; /* Fade in the background */
+-webkit-animation-duration: 0.4s;
+animation-name: fadeIn;
+animation-duration: 0.4s
+}
+
+/* Modal Content */
+.modal-content {
+position: fixed;
+bottom: 0;
+background-color: #fefefe;
+width: 100%;
+-webkit-animation-name: slideIn;
+-webkit-animation-duration: 0.4s;
+animation-name: slideIn;
+animation-duration: 0.4s
+}
+
+/* The Close Button */
+.close {
+color: #52b459;
+float: right;
+font-size: 28px;
+font-weight: bold;
+#52b459
+}
+
+.close:hover,
+.close:focus {
+color: #000;
+text-decoration: none;
+cursor: pointer;
+}
+
+.modal-header {
+padding: 2px 16px;
+background-color: white;
+color: white;
+}
+
+.modal-body {padding: 2px 16px;}
+
+.modal-footer {
+padding: 2px 16px;
+/*background-color: #5cb85c;*/
+color: white;
+}
+
+/* Add Animation */
+@-webkit-keyframes slideIn {
+from {bottom: -300px; opacity: 0}
+to {bottom: 0; opacity: 1}
+}
+
+@keyframes slideIn {
+from {bottom: -300px; opacity: 0}
+to {bottom: 0; opacity: 1}
+}
+
+@-webkit-keyframes fadeIn {
+from {opacity: 0}
+to {opacity: 1}
+}
+
+@keyframes fadeIn {
+from {opacity: 0}
+to {opacity: 1}
+}
+
+/*scanner animation*/
+
+.preloader-scan {
+  position: fixed;
+  left: 0;
+  right: 0;
+  max-width: 200px;
+  display: table;
+  margin: 0 auto;
+  height: 50%;
+  text-align: center;
+}
+.preloader-scan li:nth-child(1) {
+  width: 1px;
+}
+.preloader-scan li:nth-child(2) {
+  width: 1px;
+}
+.preloader-scan li:nth-child(3) {
+  width: 20px;
+}
+.preloader-scan li:nth-child(4) {
+  width: 4px;
+}
+.preloader-scan li:nth-child(5) {
+  width: 5px;
+}
+.preloader-scan li:nth-child(6) {
+  width: 4px;
+}
+.preloader-scan li:nth-child(7) {
+  width: 5px;
+}
+.preloader-scan li:nth-child(8) {
+  width: 1px;
+}
+.preloader-scan li:nth-child(9) {
+  width: 2px;
+}
+.preloader-scan li:nth-child(10) {
+  width: 2px;
+}
+.preloader-scan li:nth-child(11) {
+  width: 3px;
+}
+.preloader-scan li:nth-child(12) {
+  width: 1px;
+}
+.preloader-scan li:nth-child(13) {
+  width: 1px;
+}
+.preloader-scan li:nth-child(14) {
+  width: 2px;
+}
+.preloader-scan li:nth-child(15) {
+  width: 2px;
+}
+.preloader-scan li:nth-child(16) {
+  width: 1px;
+}
+.preloader-scan li:nth-child(17) {
+  width: 3px;
+}
+.preloader-scan li:nth-child(18) {
+  width: 5px;
+}
+.preloader-scan li:nth-child(19) {
+  width: 3px;
+}
+.preloader-scan li:nth-child(20) {
+  width: 4px;
+}
+.preloader-scan li:nth-child(21) {
+  width: 3px;
+}
+.preloader-scan li:nth-child(22) {
+  width: 2px;
+}
+.preloader-scan li:nth-child(23) {
+  width: 3px;
+}
+.preloader-scan li:nth-child(24) {
+  width: 3px;
+}
+.preloader-scan ul {
+  height: 100%;
+  display: table-cell;
+  vertical-align: middle;
+  list-style-type: none;
+  text-align: center;
+}
+.preloader-scan li {
+  display: inline-block;
+  width: 2px;
+  height: 50px;
+  background-color: #444;
+}
+.preloader-scan .laser {
+  width: 130%;
+  margin-left: -25%;
+  background-color: tomato;
+  height: 1px;
+  position: absolute;
+  top: 40%;
+  z-index: 2;
+  box-shadow: 0 0 4px red;
+  -webkit-animation: scanning 2s infinite;
+          animation: scanning 2s infinite;
+}
+.preloader-scan .diode {
+  -webkit-animation: beam .01s infinite;
+          animation: beam .01s infinite;
+}
+
+body {
+  height: 100%;
+}
+
+@-webkit-keyframes beam {
+  50% {
+    opacity: 0;
+  }
+}
+
+@keyframes beam {
+  50% {
+    opacity: 0;
+  }
+}
+@-webkit-keyframes scanning {
+  50% {
+    -webkit-transform: translateY(75px);
+            transform: translateY(75px);
+  }
+}
+@keyframes scanning {
+  50% {
+    -webkit-transform: translateY(75px);
+            transform:

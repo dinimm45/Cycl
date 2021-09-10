@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<meta name="viewport" content="user-scalable=no,
+	initial-scale=1 maximum-scale=, width=device-width">
+	<title>Cycl</title>
+<link href="css/styles.css" rel="stylesheet">
+</head>
+
+<body>
+	<!-- Simulate a smartphone / tablet look -->
+
+	 <h2>Bottom Modal</h2>
+
+	 <!-- Trigger/Open The Modal -->
+<button id="click">Click me</button>
+
+<input type="text">email</input>
+<br></br>
+<input type="password">password</input>
+
+	 <!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/7.22.0/firebase-app.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/7.22.0/firebase-analytics.js"></script>
+
+<script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-database.js"></script>
+
+<script>
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  var firebaseConfig = {
+    apiKey: "AIzaSyAV2_eu5cnRDNp5eq9AjTuX8q0XiRT3EZw",
+    authDomain: "cycl-e6998.firebaseapp.com",
+    databaseURL: "https://cycl-e6998.firebaseio.com",
+    projectId: "cycl-e6998",
+    storageBucket: "cycl-e6998.appspot.com",
+    messagingSenderId: "16228296144",
+    appId: "1:16228296144:web:a60e1aaa1ee9d8f4aa05d5",
+    measurementId: "G-3BVVW1GDNC"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  firebase.analytics();
+</script>
+
+<script>
+var database = firebase.database();
+var number=4;
+var scndnumber=3;
+
+function myFunction(){
+
+	if (number>scndnumber) {
+		var CocaCola = firebase.database().ref("Coca Cola/");
+
+		CocaCola.transaction(function(quentity) {
+			 return quentity + 1;
+		});
+
+	}else {
+		alert("sorry the number is not smaller than first number")
+	}
+
+}
+document.getElementById("click").addEventListener("click", function(){
+	alert("yeah we good");
+})
+
+
+</script>
+
+
+<!--<script>
+
+var playersRef = firebase.database().ref("Coca Cola/");
+var quentity=0;
+
+ref.child('Coca Cola/').child("quentity").update(quentity);
+
+console.log(quentity);
+quentity++
+
+
+playersRef.set ({
+	 fantaexotic: {
+			barcode: 213123421,
+			quentity: 0
+	 },
+
+	 sprite: {
+			barcode: 123103405093,
+			quentity: 0
+	 }
+});
+
+
+</script>-->
+
+ </body>
+
+</html>

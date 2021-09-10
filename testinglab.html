@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<meta name="viewport" content="user-scalable=no,
+	initial-scale=1 maximum-scale=, width=device-width">
+	<title>Cycl</title>
+<link href="css/styles.css" rel="stylesheet">
+</head>
+
+<body>
+	<!-- Simulate a smartphone / tablet look -->
+<div class="mobile-container">
+
+<!-- Top Navigation Menu -->
+<div class="topnav">
+  <a class="active"><img src="Images/hovedlogo.png" style="width:25px;"</a>
+  <div id="myLinks">
+    <a href="#news">News</a>
+    <a href="#contact">Contact</a>
+    <a href="#about">About</a>
+  </div>
+  <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+    <i class="fa fa-bars"></i>
+  </a>
+</div>
+
+
+
+<!-- End smartphone / tablet look -->
+</div>
+
+
+<div id="map"></div>
+	 <script>
+		 // Note: This example requires that you consent to location sharing when
+		 // prompted by your browser. If you see the error "The Geolocation service
+		 // failed.", it means you probably did not give permission for the browser to
+		 // locate you.
+		 var mymarkerpostion= {lat: -25.363, lng: 132.049};
+
+		 var MyLatning = {lat: -25.363, lng: 131.044};
+		 var map, infoWindow;
+		 function initMap() {
+			 map = new google.maps.Map(document.getElementById('map'), {
+				 center: {lat: -34.397, lng: 150.644},
+				 zoom: 17
+
+			 });
+
+			 infoWindow = new google.maps.InfoWindow;
+
+			 function addMarker(coordinates) {
+   var marker = new google.maps.Marker({
+      position: coordinates, // Passing the coordinates
+			icon:'40.png',
+      map:map, //Map that we need to add
+      draggarble: false// If set to true you can drag the marker
+   });
+}
+
+var myothermarker = new google.maps.Marker({
+	position: mymarkerpostion,
+	map,
+	title: "Click to zoom"
+});
+addMarker({lat: 59.919931, lng: 10.767673}); // Brooklyn Coordinates
+addMarker({lat: 40.7831, lng: -73.9712}); // Manhattan Coordinates
+
+
+			 // Try HTML5 geolocation.
+			 if (navigator.geolocation) {
+				 navigator.geolocation.getCurrentPosition(function(position) {
+					 var pos = {
+						 lat: position.coords.latitude,
+						 lng: position.coords.longitude
+					 };
+
+					 infoWindow.setPosition(pos);
+					 infoWindow.setContent('your here.');
+					 infoWindow.open(map);
+
+					 map.setCenter(pos);
+				 }, function() {
+					 handleLocationError(true, infoWindow, map.getCenter());
+				 });
+			 } else {
+				 // Browser doesn't support Geolocation
+				 handleLocationError(false, infoWindow, map.getCenter());
+			 }
+		 }
+
+		 function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+			 infoWindow.setPosition(pos);
+			 infoWindow.setContent(browserHasGeolocation ?
+														 'Error: The Geolocation service failed.' :
+														 'Error: Your browser doesn\'t support geolocation.');
+			 infoWindow.open(map);
+		 }
+
+		 function initMap() {
+  const myLatlng = { lat: -25.363, lng: 131.044 };
+  const map = new google.maps.Map(document.getElementById("map"), {
+    zoom: 4,
+    center: myLatlng
+  });
+
+	const marker2 = new google.maps.Marker({
+    position: mymarkerpostion,
+    map,
+    title: "Click to zoom"
+  });
+
+  const marker = new google.maps.Marker({
+    position: myLatlng,
+    map,
+    title: "Click to zoom"
+  });
+  map.addListener("center_changed", () => {
+    // 3 seconds after the center of the map has changed, pan back to the
+    // marker.
+    window.setTimeout(() => {
+      map.panTo(marker.getPosition());
+    }, 3000);
+  });
+  marker.addListener("click", () => {
+    map.setZoom(8);
+    map.setCenter(marker.getPosition());
+  });
+
+	// Obtain the distance in meters by the computeDistanceBetween method
+// From the Google Maps extension
+var distanceInMeters = google.maps.geometry.spherical.computeDistanceBetween(
+    markerA.getPosition(),
+    markerB.getPosition()
+);
+
+// Outputs: Distance in Meters:  286562.7470149898
+console.log("Distance in Meters: ", distanceInMeters);
+
+// Outputs: Distance in Kilometers:  286.5627470149898
+console.log("Distance in Kilometers: ", (distanceInMeters * 0.001));
+}
+	 </script>
+
+
+	 <button class="votebtn" style="width: 150px; height: 40px; font-size: 20px;"  onclick="submit()" type="button" id="good">Good</button>
+
+	 <script>
+
+	 function submit(){
+	 var database=firebase.database();
+	 var brcdnmbr="111111112";
+
+		 var TekstToFirebase=database.ref().child("bottlenumber");
+		 TekstToFirebase.on('value', function(snapshot) {
+			 alert("taken");
+
+	 });
+	 document.getElementById("good").addEventListener("click", submit);
+
+ }
+
+	 </script>
+
+
+	 <script defer
+	 src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBN_faR-aBh8QCN6JNZ7BPxh2mXYTN4RwY&callback=initMap">
+	 </script>
+
+
+	 <h2>Bottom Modal</h2>
+
+	 <input type="text">
+
+	 <br></br>
+
+	 <!-- Trigger/Open The Modal -->
+	 <button id="myBtn">Open Modal</button>
+
+	 <!-- The Modal -->
+	 <div id="myModal" class="modal">
+
+	   <!-- Modal content -->
+	   <div class="modal-content">
+	     <div class="modal-header">
+	       <span class="close">&times;</span>
+	       <h2 style="color: green;">DepositPoint #22</h2><img src="Images/box.png" style="height:185px; width: 145px;">
+	     </div>
+	     <div class="modal-body">
+	       <p>Deli De Luca</p>
+	       <p>Grønlandsleier 1</p>
+	     </div>
+	     <div class="modal-footer">
+				 <button style="margin:left 450px; background-color: green; color: white;" type="button" name="button">Scan your bottle</button>
+	     </div>
+	   </div>
+
+	 </div>
+
+	 <script>
+	 // Get the modal
+	 var modal = document.getElementById("myModal");
+
+	 // Get the button that opens the modal
+	 //var btn = document.getElementById("myBtn");
+
+
+	 // Get the <span> element that closes the modal
+	 var span = document.getElementsByClassName("close")[0];
+
+	 // When the user clicks the button, open the modal
+
+	// btn.onclick = function() {
+	 //  modal.style.display = "block";
+//	 }
+
+
+	 // When the user clicks on <span> (x), close the modal
+	 span.onclick = function() {
+	   modal.style.display = "none";
+	 }
+
+	 // When the user clicks anywhere outside of the modal, close it
+	 window.onclick = function(event) {
+	   if (event.target == modal) {
+	     modal.style.display = "none";
+	   }
+	 }
+	 </script>
+
+	 <!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/7.22.0/firebase-app.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/7.22.0/firebase-analytics.js"></script>
+
+<script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-database.js"></script>
+
+<script>
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  var firebaseConfig = {
+    apiKey: "AIzaSyAV2_eu5cnRDNp5eq9AjTuX8q0XiRT3EZw",
+    authDomain: "cycl-e6998.firebaseapp.com",
+    databaseURL: "https://cycl-e6998.firebaseio.com",
+    projectId: "cycl-e6998",
+    storageBucket: "cycl-e6998.appspot.com",
+    messagingSenderId: "16228296144",
+    appId: "1:16228296144:web:a60e1aaa1ee9d8f4aa05d5",
+    measurementId: "G-3BVVW1GDNC"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  firebase.analytics();
+</script>
+
+
+
+ </body>
+
+<style>
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 90%;
+      }
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+
+			#overlay {
+  position: bottom;
+  display: none;
+  width: 100%;
+  height: 45%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0,0,0,0.5);
+  z-index: 2;
+  cursor: pointer;
+}
+
+#text{
+  position: absolute;
+  top: 130%;
+  left: 50%;
+  font-size: 50px;
+  color: white;
+  transform: translate(-50%,-50%);
+  -ms-transform: translate(-50%,-50%);
+}
+
+/* The Modal (background) */
+.modal {
+	display: none; /* Hidden by default */
+	position: fixed; /* Stay in place */
+	z-index: 1; /* Sit on top */
+	left: 0;
+	top: 0;
+	width: 100%; /* Full width */
+	height: 100%; /* Full height */
+	overflow: auto; /* Enable scroll if needed */
+	background-color: rgb(0,0,0); /* Fallback color */
+	background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+	-webkit-animation-name: fadeIn; /* Fade in the background */
+	-webkit-animation-duration: 0.4s;
+	animation-name: fadeIn;
+	animation-duration: 0.4s
+}
+
+/* Modal Content */
+.modal-content {
+	position: fixed;
+	bottom: 0;
+	background-color: #fefefe;
+	width: 100%;
+	-webkit-animation-name: slideIn;
+	-webkit-animation-duration: 0.4s;
+	animation-name: slideIn;
+	animation-duration: 0.4s
+}
+
+/* The Close Button */
+.close {
+	color: white;
+	float: right;
+	font-size: 28px;
+	font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+	color: #000;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+.modal-header {
+	padding: 2px 16px;
+	background-color: white;
+	color: white;
+}
+
+.modal-body {padding: 2px 16px;}
+
+.modal-footer {
+	padding: 2px 16px;
+	/*background-color: #5cb85c;*/
+	color: white;
+}
+
+/* Add Animation */
+@-webkit-keyframes slideIn {
+	from {bottom: -300px; opacity: 0}
+	to {bottom: 0; opacity: 1}
+}
+
+@keyframes slideIn {
+	from {bottom: -300px; opacity: 0}
+	to {bottom: 0; opacity: 1}
+}
+
+@-webkit-keyframes fadeIn {
+	from {opacity: 0}
+	to {opacity: 1}
+}
+
+@keyframes fadeIn {
+	from {opacity: 0}
+	to {opacity: 1}
+}
+
+    </style>
+
+</html>

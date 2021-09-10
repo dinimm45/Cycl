@@ -1,0 +1,292 @@
+
+
+<!DOCTYPE html>
+
+<html class="html">
+<head><title>Deliver</title>
+  <script src="https://www.gstatic.com/firebasejs/7.22.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.22.0/firebase-analytics.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-database.js"></script>
+   <script src="https://www.gstatic.com/firebasejs/live/3.1/firebase.js"></script>
+   <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.3.1/dist/tf.min.js"></script>
+   <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/speech-commands@0.4.0/dist/speech-commands.min.js"></script>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+
+<body class="body">
+<!--scan the bottle stage 1-->
+
+<!--get position stage 2-->
+
+<!--i wanna know that the bottle is inside stage 3-->
+
+<!--camera detecting the station?-->
+<!--sound detection when the bottle is pantet-->
+<!--GPS postion, barcode, and sound recognisation-->
+<!--dont leave until you get the sound-->
+<!--the sound is any type of bottle sound from fall activity, this is triggered only after scanning the right bottle
+
+
+<!--vibration might be also a method-->
+
+
+
+<h1 style="color:#52b459"> Drop your bottle inside the deposit point to recycle it </h1>
+<button hidden type="button" onclick="init()">Start</button>
+<div hidden id="label-container"></div>
+<h3  id="bottleshow"></h3>
+
+<!--remove hidden to show the elements-->
+
+<!--koble til firebase sin sum og la det opdateres når lyden detekteres-->
+
+
+<!--<h1> Please drop your bottle inside the deposit point. Keep your phone in close distance to the point</h1>-->
+<div class="lds-ellipsis" style="position:fixed; left: 40%; top:30%"><div></div><div></div><div></div><div></div></div>
+
+<img src="Images/box.png" style="width:150px; position:fixed; left: 33%; top:45%">
+<script type="text/javascript">
+    // more documentation available at
+    // https://github.com/tensorflow/tfjs-models/tree/master/speech-commands
+
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyAV2_eu5cnRDNp5eq9AjTuX8q0XiRT3EZw",
+      authDomain: "cycl-e6998.firebaseapp.com",
+      databaseURL: "https://cycl-e6998.firebaseio.com",
+      projectId: "cycl-e6998",
+      storageBucket: "cycl-e6998.appspot.com",
+      messagingSenderId: "16228296144",
+      appId: "1:16228296144:web:a60e1aaa1ee9d8f4aa05d5",
+      measurementId: "G-3BVVW1GDNC"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+
+    // the link to your model provided by Teachable Machine export panel
+    const URL = "https://teachablemachine.withgoogle.com/models/JKoiokOpT/";
+
+    async function createModel() {
+        const checkpointURL = URL + "model.json"; // model topology
+        const metadataURL = URL + "metadata.json"; // model metadata
+
+        const recognizer = speechCommands.create(
+            "BROWSER_FFT", // fourier transform type, not useful to change
+            undefined, // speech commands vocabulary feature, not useful for your models
+            checkpointURL,
+            metadataURL);
+
+        // check that model and metadata are loaded via HTTPS requests.
+        await recognizer.ensureModelLoaded();
+
+        return recognizer;
+    }
+
+    async function init() {
+        const recognizer = await createModel();
+        //de blir hentet fra nettet
+        const classLabels = recognizer.wordLabels(); // get class labels
+        const labelContainer = document.getElementById("label-container");
+        for (let i = 0; i < classLabels.length; i++) {
+            labelContainer.appendChild(document.createElement("div"));
+        }
+
+        // listen() takes two arguments:
+        // 1. A callback function that is invoked anytime a word is recognized.
+        // 2. A configuration object with adjustable fields
+        recognizer.listen(result => {
+            const scores = result.scores; // probability of prediction for each class
+            // render the probability scores per class
+            for (let i = 0; i < classLabels.length; i++) {
+                const classPrediction = classLabels[i] + ": " + result.scores[i].toFixed(2); //sjekk her kanskje de ligger inne her
+                labelContainer.childNodes[i].innerHTML = classPrediction;
+                console.log(classPrediction);
+
+                var noiseAndBottle=document.getElementById("label-container");
+                document.getElementById("bottleshow").innerHTML=classPrediction;
+
+                function amountcounter(){
+                  //få den inn i uid og la det bli amount
+                  //alle flasker skal koste samme til vi finner en bedre løsning for større flasker
+                  var amount=0;
+                  var uid=firebase.auth().currentUser.uid;
+                  var amountcc = firebase.database().ref().child(uid).child("users/").child("amount");
+                  amountcc.transaction(function(amount) {
+                     return amount + 1 + 1;
+                  });
+
+                  firebase.auth().onAuthStateChanged(FirebaseUser => {
+                  if (FirebaseUser) {
+                    console.log(FirebaseUser);
+                  }else {
+                    console.log("not logged in");
+                  }
+
+
+
+                  });
+                  const auth= firebase.auth();
+                }
+
+
+
+                //vi klarte å gå inn i den som er på nettet på denne måten. Få til riktig lyder IA
+                //og finn ut hvilken label som blir fulgt
+                //what is being trickered is backround noise and clas 2. We can store same sound on both. Make them very precise on the training
+                //bruk else if metoden eller && metoden
+                if (classPrediction == "Bottle: 0.02") {
+                    amountcounter();
+                    // Stop the recognition in 5 seconds.
+                    setTimeout(() => recognizer.stopListening(), 1000);
+                    setTimeout(function(){
+                      alert("Thank you for taking care for the enviroment, you have now received 2 CC!")
+                      //window.location.href=("index.html");
+
+                    },1000)
+
+
+                }else if (classPrediction == "bottle: 0.80") {
+
+                  amountcounter();
+                  setTimeout(() => recognizer.stopListening(), 1000);
+                  setTimeout(function(){
+                    alert("Thank you for taking care for the enviroment, you have now received 2 CC!")
+                    //window.location.href=("index.html");
+
+                  },1000)
+
+
+                }else if (classPrediction == "Bottle: 0.82") {
+                  alert("check!")
+                  amountcounter();
+
+                }else if (classPrediction == "Bottle: 0.83") {
+                  alert("check!")
+                  amountcounter();
+
+                }else if (classPrediction == "Bottle: 0.84") {
+                  alert("check!")
+                  amountcounter();
+
+                }else if (classPrediction == "Bottle: 0.85") {
+                  alert("check!")
+                  amountcounter();
+
+                }else if (classPrediction == "Bottle: 0.86") {
+                  alert("check!")
+                  amountcounter();
+
+                }else if (classPrediction == "Bottle: 0.87") {
+                  alert("check!")
+                  amountcounter();
+
+                }else if (classPrediction == "Bottle: 0.88") {
+                  alert("check!")
+                  amountcounter();
+
+                }else if (classPrediction == "Bottle: 0.89") {
+                  alert("check!")
+                  amountcounter();
+
+                }else if (classPrediction == "Bottle: 0.90") {
+                  alert("check!")
+                  amountcounter();
+
+                }else if (classPrediction == "Bottle: 0.91") {
+                  alert("check!")
+                  amountcounter();
+
+                }else if (classPrediction == "Bottle: 0.92") {
+                  alert("check!")
+                  amountcounter();
+
+                }else if (classPrediction == "Bottle: 0.93") {
+                  alert("check!")
+                  amountcounter();
+
+                }else if (classPrediction == "Bottle: 0.94") {
+                  alert("check!")
+                  amountcounter();
+
+                }else if (classPrediction == "Bottle: 0.95") {
+                  alert("check!")
+                  amountcounter();
+
+                }else if (classPrediction == "bottle: 0.96") {
+                  amountcounter();
+                  setTimeout(() => recognizer.stopListening(), 1000);
+                  setTimeout(function(){
+                    alert("Thank you for taking care for the enviroment, you have now received 2 CC!")
+                    //window.location.href=("index.html");
+
+                  },1000)
+
+                }else if (classPrediction == "bottle: 0.97") {
+                  amountcounter();
+                  setTimeout(() => recognizer.stopListening(), 1000);
+                  setTimeout(function(){
+                    alert("Thank you for taking care for the enviroment, you have now received 2 CC!")
+                    //window.location.href=("index.html");
+
+                  },1000)
+
+                }else if (classPrediction == "bottle: 0.98") {
+                  amountcounter();
+                  setTimeout(() => recognizer.stopListening(), 1000);
+                  setTimeout(function(){
+                    alert("Thank you for taking care for the enviroment, you have now received 2 CC!")
+                    //window.location.href=("index.html");
+
+                  },1000)
+
+                }else if (classPrediction == "bottle: 0.99") {
+                  amountcounter();
+
+                  setTimeout(() => recognizer.stopListening(), 1000);
+                  setTimeout(function(){
+                    alert("Thank you for taking care for the enviroment, you have now received 2 CC!")
+                    //window.location.href=("index.html");
+
+                  },1000)
+
+                }else if (classPrediction == "bottle: 1.00") {
+                  amountcounter();
+
+                  setTimeout(() => recognizer.stopListening(), 1000);
+                  setTimeout(function(){
+                    alert("Thank you for taking care for the enviroment, you have now received 2 CC!")
+                    //window.location.href=("index.html");
+
+                  },1000)
+
+                }
+            }
+
+            //gjør sånn at brukeren blir trukket ett summ dersom lyden ikke kommer inn
+            //og at brukeren må starte alt på nytt
+        }, {
+            includeSpectrogram: true, // in case listen should return result.spectrogram
+            probabilityThreshold: 0.75,
+            invokeCallbackOnNoiseAndUnknown: true,
+            overlapFactor: 0.50 // probably want between 0.5 and 0.75. More info in README
+        });
+
+        // Stop the recognition in 5 seconds.
+        //setTimeout(() => recognizer.stopListening(), 5000);
+    }
+    //setTimeout(function(){alert("You have not placed your bottle back")},10000)
+    init()
+    //if classPrediction is not equal to this and this within this time do this
+
+</script>
+
+
+
+
+
+
+
+</body>
+
+</html

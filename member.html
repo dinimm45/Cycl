@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+
+<html class="html">
+<head><title>Deliver</title>
+  <script src="https://www.gstatic.com/firebasejs/7.22.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.22.0/firebase-analytics.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-database.js"></script>
+   <script src="https://www.gstatic.com/firebasejs/live/3.1/firebase.js"></script>
+   <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.3.1/dist/tf.min.js"></script>
+   <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/speech-commands@0.4.0/dist/speech-commands.min.js"></script>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+
+<body class="body">
+
+  <img class="logo" src="Images/hovedlogo.png">
+  <br></br>
+  <img style="width: 25px; height: 20px; position:fixed; left:27%; top:40%" src="Images/profileicon.png">
+  <input class="name" id="txtname" placeholder="First and lastname" type="text" width="200px"></input>
+  <input class="phone" id="phonenmbr" placeholder="Phone" type="tel" width="200px" maxlength="8"></input>
+  <img style= "width: 20px; height: 20px; position: fixed; left:27%; top:45%;" src="Images/phne.png">
+  <img style="width:25px; height:20px; position:fixed;left:27%;top:50%"src="Images/email.png">
+  <input class="inputemail" id="email" placeholder="Email" type="text" width="200px"></input>
+
+
+
+
+
+  <br></br>
+  <input class="inputpassword" id="passwrd" placeholder="password" type="password" width="200px"></input>
+  <img style="width:25px; height:20px; position:fixed;left:27%;top:56%" src="Images/lock.png">
+
+  <br></br>
+  <br></br>
+  <br></br>
+  <button class="loginbtn" style="width:200px; height: 30px; background-color:; color:white"id="rgstr">Register</button>
+  <br></br>
+
+  <a href="login.html" style="color: #52b459;border-bottom:hidden; position:fixed; left: 41%; top:80%;"> << BACK</a>
+
+<script src="member.js"></script>
+</body>
+
+<style>
+.inputemail{
+  position:fixed;
+  left:33%;
+  top:50%;
+  border-top:hidden;
+  border-right:hidden;
+  border-left:hidden;
+
+}
+.inputpassword{
+position:fixed;
+left:33%;
+top:56%;
+border-top:hidden;
+border-right:hidden;
+border-left:hidden;
+}
+
+.loginbtn {
+  border-radius: 12px;
+  background-color: #52b459;
+  border: 0px;
+  position: fixed; /* or absolute */
+ top: 70%;
+ left: 30%;
+}
+
+.logo{
+position: fixed;
+left: 35%;
+
+}
+
+
+.name{
+  position:fixed;
+  left:33%;
+  top:40%;
+  border-top:hidden;
+  border-right:hidden;
+  border-left:hidden;
+
+}
+
+.phone{
+  position:fixed;
+  left:33%;
+  top:45%;
+  border-top:hidden;
+  border-right:hidden;
+  border-left:hidden;
+}
+
+
+</style>
+
+</html

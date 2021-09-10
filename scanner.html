@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <script></script>
+  <meta name="viewport" content="user-scalable=no,initial-scale=1 maximum-scale=, width=device-width">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+  <meta name="author" content="ZXing for JS">
+
+  <title>Scan your bottle</title>
+  <script src="https://www.gstatic.com/firebasejs/7.22.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.22.0/firebase-analytics.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-database.js"></script>
+   <script src="https://www.gstatic.com/firebasejs/live/3.1/firebase.js"></script>
+  <link rel="stylesheet" rel="preload" as="style" onload="this.rel='stylesheet';this.onload=null"
+    href="https://fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic">
+  <link rel="stylesheet" rel="preload" as="style" onload="this.rel='stylesheet';this.onload=null"
+    href="https://unpkg.com/normalize.css@8.0.0/normalize.css">
+  <link rel="stylesheet" rel="preload" as="style" onload="this.rel='stylesheet';this.onload=null"
+    href="https://unpkg.com/milligram@1.3.0/dist/milligram.min.css">
+    <link href= "styles.css" rel="stylesheet">
+
+</head>
+<!-- velge filer av bilder om ønskelif  <input type="file" accept="image/*;capture=camera"/>
+<input type="submit"/>
+<input type="file" accept="image/*" capture="camera" id="capture">
+ -->
+<body class="body">
+
+  <main class="wrapper" style="padding-top:2em">
+
+<p id="counter">counting</p>
+    <section class="container" id="demo-content">
+      <div>
+        <div class="preloader-scan">
+      <ul>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+
+        <div class="diode">
+          <div class="laser"></div>
+        </div>
+      </ul>
+
+    </div>
+        <video id="video" width="525" height="350" style="border: 1px solid gray"></video>
+      </div>
+
+      <label id="rezlt" style="color: #52b459; ">Result:</label>
+      <input id="rez" placeholder="barcode"></input>
+      <br></br>
+      <a href="index.html" style=" color: #52b459; "> << Back </a>
+
+
+  </main>
+
+  <script type="text/javascript" src="https://unpkg.com/@zxing/library@latest"></script>
+  <script type="text/javascript">
+    window.addEventListener('load', function () {
+
+      var sec= 0;
+      var treesec= setTimeout (function(){"", 3000});
+			let selectedDeviceId;
+			var count=0;
+
+      var colacola="5012345678900";
+      var database = firebase.database();
+			const codeReader = new ZXing.BrowserMultiFormatReader()
+			console.log('ZXing code reader initialized')
+			codeReader.listVideoInputDevices()
+
+
+      var scndcounter=30;
+
+      var counter=setInterval(timer, 1000); //1000 will  run it every 1 second
+
+      function timer(){
+        scndcounter=scndcounter-1;
+        if (scndcounter <= 0)
+        {
+           clearInterval(counter);
+           //counter ended, do something here
+           return;
+        }
+      console.log(scndcounter);
+        //Do code for showing the number of seconds here
+      }
+            codeReader.decodeFromVideoDevice(selectedDeviceId, 'video', (result, err) => {
+              //den under funker!!!
+                if (count >=5 && result==colacola && scndcounter <15) {
+                  //register warning 1 as a string text or number and restart the procces. If warning is more than 3. If warning is > 5
+                  //show alert when the time is out so that they can continue to scan, if the scan is more than 5 block the user activity
+            			alert("You have scanned same product multiple times, you can not use this service for the next 3 hours");
+
+            			//jeg kan muligens gjøre at register skal huskes men ikke sekunder
+
+            		} else if (count >=5 && result==colacola && scndcounter <10) {
+            			alert("its fine")}
+
+
+
+              if (result) {
+            localStorage.setItem("score", 0); //Set value
+            var score = localStorage.getItem("score"); ///Get value as string
+
+            //Convert
+            var score1 = parseInt(score+1)//Returns 123
+            console.log(score1);
+            score++;
+              count++;
+                // Retrieve
+                //meningen er at den skal restarte counter etter 10 sekonder
+                /*
+                setTimeout(function(){
+                  count=0;
+                }, 10000)*/
+
+                //hvis counter er større enn 5 innen 1000 sekunder blokker bruker ellers counter + "Sprite" til firebase + 3 Cycl coins på brukers konto
+                firebase.auth().onAuthStateChanged(FirebaseUser => {
+                if (FirebaseUser) {
+                  console.log(user.email);
+                }else {
+                  console.log("not logged in");
+                  signOut.style.display="block";
+                }
+
+
+
+                });
+                const auth= firebase.auth();
+                console.log(result)
+              if (result==colacola) {
+                //i may need this for amount part
+                //update the amount in firebase from here in sha Allah, and place it inside the users uid
+                //use the example below
+              /*  var badCount = database.ref().child("badClick");
+                badCount.on('value', function(snapshot) {
+                  badClicks = snapshot.val();
+                  refreshResults();
+                  // var results = document.getElementById('results');
+                  // results.innerHTML += '<br />Bad: ' + snapshot.val();
+
+                  //prøv denne eksempelet for å hente amount fra currentUser
+                  //var users = firebase.database().ref().child(uid).child("users/").child("info").child("email men gjør om til amount");
+                });*/
+
+                var UserName= "welcome Nasrudin";
+                var email =firebase.auth().currentUser && firebase.auth().currentUser.email
+                var uid = firebase.auth().currentUser.uid;
+                var coce = firebase.database().ref().child('bottles').child("colacola comapany")
+                coce.transaction(function(result) {
+                   return result + 1;
+                   console.log(FirebaseUser);
+                });
+
+                var emailToFirebase = firebase.database().ref().child(uid).child("users/");
+                emailToFirebase.update({email});
+                setTimeout(function(){
+                  window.location.href=("securereturn.html")
+                },300);
+
+                //this is giving me users database info. insert here the info about how much they have of CC etc
+                //use push method if neseccery
+                //write this down with explenation
+                //may not update becouse of the uid. The uid was initialized by making it readed earlier and that by moving it up
+                /*users.set ({
+                   info: {
+                      email: email
+                   },
+                   amount: amount
+                   //name: UserName
+
+                });*/
+
+                //var database= firebase.database();// først setter vi oss inn i databasen
+                //var ref = database.ref().child('accounts').child("bottles").child(uid)//så lager vi en referanse i databasen
+                //ref.push(email); //så dytter vi noe inn i referansen.
+
+
+              }else {
+                alert("its not coca")
+              };
+
+            /* find the fuck out of the auth  firebase.auth().onAuthStateChanged(FirebaseUser => {
+                if (FirebaseUser) {
+                  window.open("index.html");
+                  console.log(FirebaseUser);
+                }else {
+                  console.log("not logged in");
+                }
+              });*/
+
+
+                document.getElementById('rezlt').textContent = result.text
+								document.getElementById("counter").innerHTML= count;
+              }
+              if (err && !(err instanceof ZXing.NotFoundException)) {
+                console.error(err)
+                document.getElementById('rezlt').textContent = err
+              }
+            })
+            console.log(`Started continous decode from camera with id ${selectedDeviceId}`)
+          })
+
+          // document.getElementById('resetButton').addEventListener('click', () => {
+          //   codeReader.reset()
+          //   document.getElementById('result').textContent = '';
+          //   console.log('Reset.')
+          // })
+
+
+  </script>
+
+
+  <script>
+    // Your web app's Firebase configuration
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    var firebaseConfig = {
+      apiKey: "AIzaSyAV2_eu5cnRDNp5eq9AjTuX8q0XiRT3EZw",
+      authDomain: "cycl-e6998.firebaseapp.com",
+      databaseURL: "https://cycl-e6998.firebaseio.com",
+      projectId: "cycl-e6998",
+      storageBucket: "cycl-e6998.appspot.com",
+      messagingSenderId: "16228296144",
+      appId: "1:16228296144:web:a60e1aaa1ee9d8f4aa05d5",
+      measurementId: "G-3BVVW1GDNC"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    firebase.analytics();
+  </script>
+
+</body>
+
+<!--<script src="scann.js"></script>-->
+
+</html>
