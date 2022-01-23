@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Locate the user</title>
+<meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+<script src="https://www.gstatic.com/firebasejs/7.22.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.22.0/firebase-analytics.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-database.js"></script>
+ <script src="https://www.gstatic.com/firebasejs/live/3.1/firebase.js"></script>
+<script src="https://unpkg.com/@turf/turf@6/turf.min.js"></script>
+<link href="https://api.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.css" rel="stylesheet">
+<script src="https://api.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.js"></script>
+<link href= "styles.css" rel="stylesheet">
+<style>
+body { margin: 0; padding: 0; z-index: 0; }
+#map { position: absolute; top: 10%; bottom: 0; width: 100%; height: 90%; }
+</style>
+</head>
+<body>
+
+<!--sidenavigation-->
+<div id="sidenav" class="mobile-container">
+	<img src="hovedlogo.png" style="width:30px; position: relative; left: 45%;">
+	<div id="mySidenav" class="sidenav" >
+		<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+		<a id="hideprofile" href="profile.html"> <img src="user.png" style="width: 20px; height: 21px;">   Profile</a>
+		<a id="redeem" href="Redeem.html"> <img src="shop.png" style="width: 20px; height: 21px;"> Purchase</a>
+		<a href="faq.html"><img src="faqs.png" style="width: 20px; height: 21px;"> Faqs</a>
+		<!--<a href="sms://+1800605xxxx?&body=Download%27m%20This%20in%20your%20app.%20at%20this%20side."><img src="Images/gift.png" style="width: 20px; height: 21px;"> Invite a friend</a>-->
+		<a id="hidesignin"href="login.html"><img src="login.png" style="width: 20px; height: 21px;"> Sign in</a>
+		<div id="hidesignoff">
+			<a id="logoff" href="home.html"><img src="logout.png" style="width: 20px; height: 21px;"> Sign out</a>
+			<!--legg til en sign in knapp når bruker er avloget-->
+		</div>
+	  </div>
+	  <span class="closesidenav" onclick="openNav()">&#9776; </span>
+	  <div id="map"></div>
+	<!-- Simulate a smartphone / tablet look -->
+</div>
+<!--sidenavigation-->
+
+<!--station overlay-->
+<div id="myModal" class="modal">
+
+	<!-- Modal content -->
+	<div class="modal-content">
+
+
+	  <div class="returnstationcontent">
+
+		<span class="close">&times;</span>
+		<div class="itemstation"><h2 id="returnstation" style="color: #52b459;">Station 1002</h2> </div>
+		<div class="itemstation"> <div class="itemsicons"><img src="store.png" style="width:29px; height:39px;"></div><p id="place" style="color: black;">Deli De Luca</p></div>
+		<div class="itemstation"><div class="itemsicons"><img src="placemark.png" style="width:29px; height:39px;"></div><p id="adress" style="color: black;">Karl Johansgata </p></div>
+		<div class="itemstation"><div class="itemsicons"><img src="recyclebin.png" style="width:29px; height:39px;"></div><p id="bagQauntity" style="color: black;">100%</p> </div>
+		<div class="itemstation"><button class="scannerbtn"id="scannbtn">Recycle</button></div></div>
+		<img src="station.jpeg" style="width:140px; height:170px; position: absolute;right: 65%; top: 30%;">
+		<hr></hr>
+	 </div> 
+
+	 <!--station overlay-->
+
+
+
+<script>
+	mapboxgl.accessToken = 'pk.eyJ1IjoiY3ljbG1vYmlsZWFwcCIsImEiOiJja3lxODBqYmwwYW10Mnd0Z2dxdDZxZGF2In0.ElRjKCz4QVFOQ8l_0hJjSw';
+const map = new mapboxgl.Map({
+container: 'map', // container ID
+style: 'mapbox://styles/mapbox/streets-v11', // style URL
+center: [10.743482389383416,59.908113321340466], // starting position
+zoom: 16 // starting zoom
+});
+ 
+// Add geolocate control to the map.
+/*map.addControl(
+new mapboxgl.GeolocateControl({
+positionOptions: {
+enableHighAccuracy: true
+},
+// When active the map will receive updates to the device's location as it changes.
+trackUserLocation: true,
+// Draw an arrow next to the location dot to indicate which direction the device is heading.
+showUserHeading: true
+})
+);*/
+// Initialize the geolocate control.
+var geolocate = new mapboxgl.GeolocateControl({
+positionOptions: {
+    enableHighAccuracy: true
+  },
+  // When active the map will receive updates to the device's location as it changes.
+trackUserLocation: true
+});
+
+// Add the control to the map.
+map.addControl(geolocate);
+map.on('load', function() {
+  geolocate.trigger(); //<- Automatically activates geolocation
+});
+
+
+//markers
+
+const geojson = {
+'type': 'FeatureCollection',
+'features': [
+{
+'type': 'Feature',
+'properties': {
+'message': 'Your here',
+'iconSize': [50, 50]
+},
+'geometry': {
+'type': 'Point',
+'coordinates': [10.800186028081384,59.93037787027734]
+}
+},
+{
+'type': 'Feature',
+'properties': {
+'message': 'Bar',
+'iconSize': [50, 50]
+},
+'geometry': {
+'type': 'Point',
+'coordinates': [10.799808823702392,59.93047248965732]
+}
+},
+{
+'type': 'Feature',
+'properties': {
+'message': 'Baz',
+'iconSize': [50, 50]
+},
+'geometry': {
+'type': 'Point',
+'coordinates': [10.775725586708518,59.92644802399647]
+}
+}
+]
+};
+
+var modal = document.getElementById("myModal");
+
+			 // Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+span.onclick = function() {
+				modal.style.display = "none";
+			  }
+
+			   // When the user clicks anywhere outside of the modal, close it
+			   window.onclick = function(event) {
+				if (event.target == modal) {
+				  modal.style.display = "none";
+				}
+			  }
+ 
+ 
+// Add markers to the map.
+for (const marker of geojson.features) {
+// Create a DOM element for each marker.
+const el = document.createElement('div');
+const width = marker.properties.iconSize[0];
+const height = marker.properties.iconSize[1];
+el.className = 'marker';
+el.style.backgroundImage = `url('logo.png')`;
+el.style.width = `${width}px`;
+el.style.height = `${height}px`;
+el.style.backgroundSize = '100%';
+ 
+
+ 
+new mapboxgl.Marker(el)
+.setLngLat(marker.geometry.coordinates)
+.addTo(map);
+
+
+geolocate.on('geolocate', function(e) {
+      var lon = e.coords.longitude;
+      var lat = e.coords.latitude
+      var position = [lon, lat];
+      //console.log(position);
+
+	  
+var from = position //lng, lat 
+var to = marker.geometry.coordinates //lng, lat
+var modal = document.getElementById("myModal");
+
+var options = {
+        units: 'miles'
+      };
+
+	  var distance = turf.distance(to, from, options);
+	  console.log(distance)
+
+		el.addEventListener('click', () => {
+			if (distance >= 0.016 )
+	  {
+		//alert("too far")
+		modal.style.display = "block";
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+		return;
+
+	  }else{
+window.alert(marker.properties.message);
+}
+return;
+});
+	  
+});
+}
+
+//Firebase & navigation
+
+const firebaseConfig = {
+    apiKey: "AIzaSyDTR4_vw3x8pTxIAiS8Y0-3T4APCwotpyg",
+    authDomain: "cycl-77b6c.firebaseapp.com",
+    databaseURL: "https://cycl-77b6c.firebaseio.com",
+    projectId: "cycl-77b6c",
+    storageBucket: "cycl-77b6c.appspot.com",
+    messagingSenderId: "139900263133",
+    appId: "1:139900263133:web:9c72ae1fd6569fe6a1d934",
+    measurementId: "G-VPV104NQQW"
+  };
+
+  firebase.initializeApp(firebaseConfig);
+
+
+  function openNav() {
+	document.getElementById("mySidenav").style.width = "250px";
+  }
+  
+  function closeNav() {
+	document.getElementById("mySidenav").style.width = "0";
+  }
+
+
+
+
+
+
+
+
+
+</script>
+
+
+<style>
+	.marker {
+display: block;
+border: none;
+border-radius: 10%;
+cursor: pointer;
+padding: 0;
+}
+</style>
+ 
+</body>
+</html>
