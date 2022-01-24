@@ -14,23 +14,23 @@
 <link href= "styles.css" rel="stylesheet">
 <style>
 body { margin: 0; padding: 0; z-index: 0; }
-#map { position: absolute; top: 10%; bottom: 0; width: 100%; height: 90%; }
+#map { position: absolute; top: 8%; bottom: 0; width: 100%; height: 92%; }
 </style>
 </head>
 <body>
 
 <!--sidenavigation-->
 <div id="sidenav" class="mobile-container">
-	<img src="hovedlogo.png" style="width:30px; position: relative; left: 45%;">
+	<img src="Images/hovedlogo.png" style="width:30px; position: relative; left: 45%;">
 	<div id="mySidenav" class="sidenav" >
 		<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-		<a id="hideprofile" href="profile.html"> <img src="user.png" style="width: 20px; height: 21px;">   Profile</a>
-		<a id="redeem" href="Redeem.html"> <img src="shop.png" style="width: 20px; height: 21px;"> Purchase</a>
-		<a href="faq.html"><img src="faqs.png" style="width: 20px; height: 21px;"> Faqs</a>
+		<a id="hideprofile" href="profile.html"> <img src="Images/user.png" style="width: 20px; height: 21px;">   Profile</a>
+		<a id="redeem" href="Redeem.html"> <img src="Images/shop.png" style="width: 20px; height: 21px;"> Purchase</a>
+		<a href="faq.html"><img src="Images/faqs.png" style="width: 20px; height: 21px;"> Faqs</a>
 		<!--<a href="sms://+1800605xxxx?&body=Download%27m%20This%20in%20your%20app.%20at%20this%20side."><img src="Images/gift.png" style="width: 20px; height: 21px;"> Invite a friend</a>-->
-		<a id="hidesignin"href="login.html"><img src="login.png" style="width: 20px; height: 21px;"> Sign in</a>
+		<a id="hidesignin"href="login.html"><img src="Images/login.png" style="width: 20px; height: 21px;"> Sign in</a>
 		<div id="hidesignoff">
-			<a id="logoff" href="home.html"><img src="logout.png" style="width: 20px; height: 21px;"> Sign out</a>
+			<a id="logoff" href="home.html"><img src="Images/logout.png" style="width: 20px; height: 21px;"> Sign out</a>
 			<!--legg til en sign in knapp når bruker er avloget-->
 		</div>
 	  </div>
@@ -47,24 +47,62 @@ body { margin: 0; padding: 0; z-index: 0; }
 	<div class="modal-content">
 
 
-	  <div class="returnstationcontent">
+		<div class="returnstationcontent">
 
-		<span class="close">&times;</span>
-		<div class="itemstation"><h2 id="returnstation" style="color: #52b459;">Station 1002</h2> </div>
-		<div class="itemstation"> <div class="itemsicons"><img src="store.png" style="width:29px; height:39px;"></div><p id="place" style="color: black;">Deli De Luca</p></div>
-		<div class="itemstation"><div class="itemsicons"><img src="placemark.png" style="width:29px; height:39px;"></div><p id="adress" style="color: black;">Karl Johansgata </p></div>
-		<div class="itemstation"><div class="itemsicons"><img src="recyclebin.png" style="width:29px; height:39px;"></div><p id="bagQauntity" style="color: black;">100%</p> </div>
-		<div class="itemstation"><button class="scannerbtn"id="scannbtn">Recycle</button></div></div>
-		<img src="station.jpeg" style="width:140px; height:170px; position: absolute;right: 65%; top: 30%;">
-		<hr></hr>
-	 </div> 
+		  <span class="close">&times;</span>
+		  <div class="itemstation"><h2 id="returnstation" style="color: #52b459; text-align: center;">Station 1002</h2> </div>
+		  <div class="itemstation"> <div class="itemsicons" style=" display: flex;justify-content: space-between; max-width: 110px; margin-right: 5px; 
+			position: relative;left: 35%;"><img src="Images/store.png" style="width:29px; height:39px;">
+		<p id="place" style="color: black;">Deli De Luca</p></div></div>
+
+		<div class="itemstation"> <div class="itemsicons" style=" display: flex;justify-content: space-between; max-width: 110px; margin-right: 5px; 
+			position: relative;left: 35%;"><img src="Images/placemark.png" style="width:29px; height:39px;">
+		<p id="adress" style="color: black;">Karl Johansgata</p></div></div>
+
+		<div class="itemstation"> <div class="itemsicons" style=" display: flex;justify-content: space-between; max-width: 120px; margin-right: 5px; 
+			position: relative;left: 35%;"><img src="Images/recyclebin.png" style="width:29px; height:39px;">
+		<p id="bagQauntity" style="color: black;">100%</p></div></div>
+
+		  <div class="itemstation" style="position: relative;left: 30%; z-index: 1;"><button class="scannerbtn"id="scannbtn">Recycle</button></div></div>
+		  <img src="Images/station.jpeg" style="width:115px; height:170px; position: absolute;right: 65%; top: 30%; z-index: -1;">
+		  <hr></hr>
+	   </div> 
 
 	 <!--station overlay-->
 
 
 
 <script>
-	mapboxgl.accessToken = 'pk.eyJ1IjoiY3ljbG1vYmlsZWFwcCIsImEiOiJja3lxODBqYmwwYW10Mnd0Z2dxdDZxZGF2In0.ElRjKCz4QVFOQ8l_0hJjSw';
+
+
+
+//Firebase & navigation
+
+const firebaseConfig = {
+    apiKey: "AIzaSyDTR4_vw3x8pTxIAiS8Y0-3T4APCwotpyg",
+    authDomain: "cycl-77b6c.firebaseapp.com",
+    databaseURL: "https://cycl-77b6c.firebaseio.com",
+    projectId: "cycl-77b6c",
+    storageBucket: "cycl-77b6c.appspot.com",
+    messagingSenderId: "139900263133",
+    appId: "1:139900263133:web:9c72ae1fd6569fe6a1d934",
+    measurementId: "G-VPV104NQQW"
+  };
+
+  firebase.initializeApp(firebaseConfig);
+
+
+  function openNav() {
+	document.getElementById("mySidenav").style.width = "250px";
+  }
+  
+  function closeNav() {
+	document.getElementById("mySidenav").style.width = "0";
+  }
+
+
+
+mapboxgl.accessToken = 'pk.eyJ1IjoiY3ljbG1vYmlsZWFwcCIsImEiOiJja3lxODBqYmwwYW10Mnd0Z2dxdDZxZGF2In0.ElRjKCz4QVFOQ8l_0hJjSw';
 const map = new mapboxgl.Map({
 container: 'map', // container ID
 style: 'mapbox://styles/mapbox/streets-v11', // style URL
@@ -108,7 +146,7 @@ const geojson = {
 {
 'type': 'Feature',
 'properties': {
-'message': 'Your here',
+'message': '1002',
 'iconSize': [50, 50]
 },
 'geometry': {
@@ -119,7 +157,7 @@ const geojson = {
 {
 'type': 'Feature',
 'properties': {
-'message': 'Bar',
+'message': '1003',
 'iconSize': [50, 50]
 },
 'geometry': {
@@ -127,19 +165,21 @@ const geojson = {
 'coordinates': [10.799808823702392,59.93047248965732]
 }
 },
-{
+/*{
 'type': 'Feature',
 'properties': {
-'message': 'Baz',
+'message': '1004',
 'iconSize': [50, 50]
 },
 'geometry': {
 'type': 'Point',
 'coordinates': [10.775725586708518,59.92644802399647]
 }
-}
+}*/
 ]
 };
+
+//if messeage ==102 show text as etc
 
 var modal = document.getElementById("myModal");
 
@@ -164,7 +204,7 @@ const el = document.createElement('div');
 const width = marker.properties.iconSize[0];
 const height = marker.properties.iconSize[1];
 el.className = 'marker';
-el.style.backgroundImage = `url('logo.png')`;
+el.style.backgroundImage = `url('Images/logo.png')`;
 el.style.width = `${width}px`;
 el.style.height = `${height}px`;
 el.style.backgroundSize = '100%';
@@ -175,7 +215,7 @@ new mapboxgl.Marker(el)
 .setLngLat(marker.geometry.coordinates)
 .addTo(map);
 
-
+//Location distance
 geolocate.on('geolocate', function(e) {
       var lon = e.coords.longitude;
       var lat = e.coords.latitude
@@ -194,18 +234,119 @@ var options = {
 	  var distance = turf.distance(to, from, options);
 	  console.log(distance)
 
+
+	  //Marker button
+
 		el.addEventListener('click', () => {
-			if (distance >= 0.016 )
+			if (distance <= 0.016 )
 	  {
-		//alert("too far")
+
+
+		switch (marker.properties.message) {
+                   case '1002':
 		modal.style.display = "block";
+		document.getElementById("returnstation").innerHTML="1002"
+		document.getElementById("place").innerHTML="Telia   "
+		document.getElementById("adress").innerHTML="Løren 1"
+		bagcount()
+		break;
+                   case '1003':
+				   modal.style.display = "block";
+		document.getElementById("returnstation").innerHTML="1003"
+		document.getElementById("place").innerHTML="Backstube"
+		document.getElementById("adress").innerHTML="C.berner"
+		bagcount()
+		break;
+
+				case '1004':
+				   modal.style.display = "block";
+		document.getElementById("returnstation").innerHTML="1004"
+		document.getElementById("place").innerHTML="Circle K"
+		document.getElementById("adress").innerHTML="Økern"
+		bagcount()
+		break;
+        
+                    }
+		//alert("too far") 
+						//function bagcounter
+						function bagcount(){ 
+					
+							switch (marker.properties.message) {
+                   case '1002':
+				   var bagcounter= firebase.database().ref().child('place').child("bag");
+				   checkbag()
+				   var bagcount = firebase.database().ref("place/").child("bag");
+						bagcount.transaction(function(bagcountr) {
+						   return bagcountr + 1;
+						});
+						return;
+
+		break;
+                   case '1003':
+				   var bagcounter= firebase.database().ref().child('place').child("bag3");
+				   checkbag()
+				   modal.style.display = "block";
+				   var bagcount = firebase.database().ref("place/").child("bag3");
+						bagcount.transaction(function(bagcountr) {
+						   return bagcountr + 1;
+						});
+						return;
+						
+		break;
+
+				case '1004':
+				   modal.style.display = "block";
+				   var bagcount = firebase.database().ref("place/").child("bag4");
+						bagcount.transaction(function(bagcountr) {
+						   return bagcountr + 1;
+						});
+						var bagcounter= firebase.database().ref().child('place').child("bag4");
+						checkbag()
+
+		break;
+        
+                    }
+
+					function checkbag(){ 
+						bagcounter.transaction(function(bagcountr) {
+			
+							var bagcapicity=document.getElementById("bagQauntity");
+							var fullbag=500;
+							var percent= Math.round( (bagcountr/fullbag)* 100);
+							bagcapicity.innerHTML=percent + "% full" ;
+			
+			
+			
+						if (bagcountr >= 500 ) {
+							var scnrbtn=document.getElementById("scannbtn");
+							scnrbtn.disabled=true;
+							modal.style.display = "none";
+							scnrbtn.textContent="this station is full";
+							alert("The bag is full. Please contact employee or use another station");
+							span.onclick = function() {
+								modal.style.display = "none";
+								
+							}
+							return;
+						}else {
+							modal.style.display = "block";
+							return  bagcountr;
+						}
+
+					});
+				}
+				}
+
+				//function bagcounter
 
 // Get the <span> element that closes the modal
 var span = document.getElementsByClassName("close")[0];
 		return;
 
 	  }else{
-window.alert(marker.properties.message);
+
+alert ("You are too far from this current recycle station")
+//window.alert(marker.properties.message);
 }
 return;
 });
@@ -213,29 +354,68 @@ return;
 });
 }
 
-//Firebase & navigation
-
-const firebaseConfig = {
-    apiKey: "AIzaSyDTR4_vw3x8pTxIAiS8Y0-3T4APCwotpyg",
-    authDomain: "cycl-77b6c.firebaseapp.com",
-    databaseURL: "https://cycl-77b6c.firebaseio.com",
-    projectId: "cycl-77b6c",
-    storageBucket: "cycl-77b6c.appspot.com",
-    messagingSenderId: "139900263133",
-    appId: "1:139900263133:web:9c72ae1fd6569fe6a1d934",
-    measurementId: "G-VPV104NQQW"
-  };
-
-  firebase.initializeApp(firebaseConfig);
 
 
-  function openNav() {
-	document.getElementById("mySidenav").style.width = "250px";
-  }
-  
-  function closeNav() {
-	document.getElementById("mySidenav").style.width = "0";
-  }
+  //check if signed in
+
+  var scnnrbtn=document.getElementById("scannbtn");
+var profile=document.getElementById("hideprofile");
+var signout=document.getElementById("hidesignoff");
+var redeem=document.getElementById("redeem");
+var signin=document.getElementById("hidesignin");
+var database = firebase.database();
+var user = firebase.auth().currentUser;
+var email= firebase.auth().currentUser && firebase.auth().currentUser.email;
+var signoutbtn=document.getElementById("logoff");
+
+
+
+scnnrbtn.addEventListener("click", function(){
+  firebase.auth().onAuthStateChanged(FirebaseUser => {
+
+
+    if (FirebaseUser) {
+      window.location.href=("scanner.html")
+      console.log(FirebaseUser);
+    }else {
+      console.log("not logged in");
+      window.location.href=("login.html");
+    }
+
+    var users = firebase.database().child(uid).child("users/");
+
+    users.push ({
+       info: {
+          email: email
+
+       }
+    });
+
+    });
+    var uid= firebase.auth().currentUser.uid;
+
+});
+signout.addEventListener("click", function(){
+  firebase.auth().signOut();
+});
+
+redeem.addEventListener("click",function(){
+  window.location.href=("Redeem.html")
+});
+
+firebase.auth().onAuthStateChanged(FirebaseUser => {
+if (FirebaseUser) {
+  console.log(FirebaseUser);
+  signin.style.display="none";
+
+}else {
+  console.log("not logged in");
+  signoutbtn.style.display = "none";
+  redeem.style.display="none";
+  profile.style.display="none";
+}
+
+});
 
 
 
