@@ -46,6 +46,9 @@ function getAccel(){
                 
 
                 console.log(frontToBack_degrees)
+                if (frontToBack_degrees > 0){
+                    alert ('position correct!')
+                }
                 // Update position and clip it to bounds
                 px = px + vx*.5;
                 if (px > 98 || px < 0){ 
