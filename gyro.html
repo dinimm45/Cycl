@@ -46,32 +46,49 @@ function getAccel(){
                 
 
                 console.log(frontToBack_degrees)
-                if (frontToBack_degrees < 4){
+                if (frontToBack_degrees < 5){
                     alert ('position correct!')
                 }
                 // Update position and clip it to bounds
-                px = px + vx*.5;
-                if (px > 98 || px < 0){ 
-                    px = Math.max(0, Math.min(98, px)) // Clip px between 0-98
-                    vx = 0;
-                }
-
-                py = py + vy*.5;
-                if (py > 98 || py < 0){
-                    py = Math.max(0, Math.min(98, py)) // Clip py between 0-98
-                    vy = 0;
-                }
-                
-                dot = document.getElementsByClassName("indicatorDot")[0]
-                dot.setAttribute('style', "left:" + (px) + "%;" +
-                                              "top:" + (py) + "%;");
                 
             });
         }
     });
-    
+
+    https://cyclmobileapp.com/Redeem.html
+    https://cyclmobileapp.com/redeem.html
+
+
+    var vglnk = {key: 'e5346b34513a4ee2cbcf8c7a90678e60'};
+    (function(d, t) {
+        var s = d.createElement(t);
+            s.type = 'text/javascript';
+            s.async = true;
+            s.src = '//cdn.viglink.com/api/vglnk.js';
+        var r = d.getElementsByTagName(t)[0];
+            r.parentNode.insertBefore(s, r);
+    }(document, 'script'));
+
+
+   
 }
 
+if (window.DeviceMotionEvent != undefined) {
+    window.ondevicemotion = function(e) {
+      
+        var x =Math.abs(e.accelerationIncludingGravity.x);
+        var y =Math.abs(e.accelerationIncludingGravity.y);
+        var z =Math.abs(e.accelerationIncludingGravity.z);
+        
+        if( y < 5 ){
+          alert("ok");
+        }
+    };
+
+}  
+
+
+getAccel()
 </script>
     </body>
 </html>
