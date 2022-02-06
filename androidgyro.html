@@ -16,6 +16,12 @@
 </head>
 
 <body class="body">
+
+
+
+<button id="accelPermsButton"  style="height:50px;" onclick="getAccel()"><h1>Get Accelerometer Permissions</h1></button>
+<div class="indicatorDot" style="left:30%; top:30%;"></div>
+
     <h2>Test on mobile of device which uses gyroscope.</h2>
 
 <canvas id="myCanvas" width="800" height="250" style="border:1px solid #d3d3d3;" />
@@ -51,15 +57,14 @@ if (window.DeviceOrientationEvent) {
    var supportsOrientation = "Yes";
    } else {   document.getElementById("dmEvent").innerHTML = "deviceorientation Not Supported!"}
 //END Check to see if browser supports motion
-</script>
 
+let isIos = false; 
+    // fix when running demo in ios, video will be frozen;
+    if (window.navigator.userAgent.indexOf('iPhone') > -1 || window.navigator.userAgent.indexOf('iPad') > -1) {
+      isIos = true;
+    }
 
-<button id="accelPermsButton"  style="height:50px;" onclick="getAccel()"><h1>Get Accelerometer Permissions</h1></button>
-        <div class="indicatorDot" style="left:30%; top:30%;"></div>
-
-
-        <script>
-            var px = 50; // Position x and y
+    var px = 50; // Position x and y
 var py = 50;
 var vx = 0.0; // Velocity x and y
 var vy = 0.0;
@@ -126,7 +131,10 @@ if (window.DeviceMotionEvent != undefined) {
 
 
 getAccel()
+
+
 </script>
+
 
 <style>
     h2 {
