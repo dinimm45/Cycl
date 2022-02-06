@@ -50,6 +50,10 @@ function deviceOrientationListener(event) {
      ctx.fillText("Beta:" + Math.round(event.beta),10,80);
      ctx.fillText("Gamma:" + Math.round(event.gamma),10,120);
 
+     if ( event.beta < 10) {
+         alert('Ok')
+     }
+
 }
 
 
