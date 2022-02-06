@@ -26,9 +26,7 @@
 function round(v) {
     return (v >= 0 || -1) * Math.round(Math.abs(v));
 }
-DeviceMotionEvent.requestPermission().then(response => {
 
-    if (response == 'granted') {
 function deviceOrientationListener(event) {
      var c=document.getElementById("myCanvas");
      var ctx=c.getContext("2d");
@@ -44,10 +42,7 @@ function deviceOrientationListener(event) {
      }
 
 }
-    }
 
-
-});
 
 // Orientation Check
 var supportsOrientation = "No";
