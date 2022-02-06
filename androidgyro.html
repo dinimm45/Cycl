@@ -18,8 +18,14 @@
 <body class="body">
     <h2>Test on mobile of device which uses gyroscope.</h2>
 
+<canvas id="myCanvas" width="800" height="250" style="border:1px solid #d3d3d3;" />
+
 <script>
    
+
+function round(v) {
+    return (v >= 0 || -1) * Math.round(Math.abs(v));
+}
 
 function deviceOrientationListener(event) {
      var c=document.getElementById("myCanvas");
