@@ -16,6 +16,8 @@
 </head>
 
 <body class="body">
+    <button id="accelPermsButton"  style="height:50px;" onclick="getAccel()"><h1>Get Accelerometer Permissions</h1></button>
+
     <h2>Test on mobile of device which uses gyroscope.</h2>
 
 <canvas id="myCanvas" width="800" height="250" style="border:1px solid #d3d3d3;" />
@@ -51,6 +53,77 @@ if (window.DeviceOrientationEvent) {
    var supportsOrientation = "Yes";
    } else {   document.getElementById("dmEvent").innerHTML = "deviceorientation Not Supported!"}
 //END Check to see if browser supports motion
+</script>
+
+
+        <script>
+            var px = 50; // Position x and y
+var py = 50;
+var vx = 0.0; // Velocity x and y
+var vy = 0.0;
+var updateRate = 1/60; // Sensor refresh rate
+
+function getAccel(){
+    DeviceMotionEvent.requestPermission().then(response => {
+        if (response == 'granted') {
+       // Add a listener to get smartphone orientation 
+           // in the alpha-beta-gamma axes (units in degrees)
+            window.addEventListener('deviceorientation',(event) => {
+                // Expose each orientation angle in a more readable way
+                rotation_degrees = event.alpha;
+                frontToBack_degrees = event.beta;
+                leftToRight_degrees = event.gamma;
+                
+                // Update velocity according to how tilted the phone is
+                // Since phones are narrower than they are long, double the increase to the x velocity
+                vx = vx + leftToRight_degrees * updateRate*2; 
+                vy = vy + frontToBack_degrees * updateRate;
+                
+
+                console.log(frontToBack_degrees)
+                if (frontToBack_degrees < 5){
+                    alert ('position correct!')
+                }
+                // Update position and clip it to bounds
+                
+            });
+        }
+    });
+
+    https://cyclmobileapp.com/Redeem.html
+    https://cyclmobileapp.com/redeem.html
+
+
+    var vglnk = {key: 'e5346b34513a4ee2cbcf8c7a90678e60'};
+    (function(d, t) {
+        var s = d.createElement(t);
+            s.type = 'text/javascript';
+            s.async = true;
+            s.src = '//cdn.viglink.com/api/vglnk.js';
+        var r = d.getElementsByTagName(t)[0];
+            r.parentNode.insertBefore(s, r);
+    }(document, 'script'));
+
+
+   
+}
+
+if (window.DeviceMotionEvent != undefined) {
+    window.ondevicemotion = function(e) {
+      
+        var x =Math.abs(e.accelerationIncludingGravity.x);
+        var y =Math.abs(e.accelerationIncludingGravity.y);
+        var z =Math.abs(e.accelerationIncludingGravity.z);
+        
+        if( y < 5 ){
+          alert("ok");
+        }
+    };
+
+}  
+
+
+getAccel()
 </script>
 
 <style>
