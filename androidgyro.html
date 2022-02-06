@@ -1,11 +1,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <script></script>
-  <script src="https://www.gstatic.com/firebasejs/7.22.0/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/7.22.0/firebase-analytics.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-database.js"></script>
-   <script src="https://www.gstatic.com/firebasejs/live/3.1/firebase.js"></script>
 	 <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -16,11 +11,12 @@
 </head>
 
 <body class="body">
-    <button id="accelPermsButton"  style="height:50px;" onclick="getAccel()"><h1>Get Accelerometer Permissions</h1></button>
+    <button id="accelPermsButton"  style="height:10px;position: absolute; z-index: 1;" onclick="getAccel()"><h6>Get Accelerometer Permissions</h6></button>
 
-    <h2>Test on mobile of device which uses gyroscope.</h2>
+    <img src="tilt.png" style="width: 100%; height: 50%; position: relative; bottom: 50%;" alt="">
+    <h1 style="color: green; text-align: center;">Tilt your phone over the station.</h1>
 
-<canvas id="myCanvas" width="800" height="250" style="border:1px solid #d3d3d3;" />
+<canvas  id="myCanvas" width="800" height="250" style="border:1px solid #d3d3d3; display: none;"> </canvas>
 
 <script>
    
