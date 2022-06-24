@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Image test using</title>
+  <link rel="stylesheet" href="styles.css">
+  <!--<button type="button" onclick="init()">Start</button>-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+  
+
+  <div style="display: flex;flex: 1;align-items: center;justify-content: center;" id="webcam-container" class="completedclass">
+
+    <div class="container" style="position: absolute; bottom: 50%; z-index: 100; top: 20px;">
+      <ul class="progressbar">
+        <li class="activeprgrs">Scan</li>
+        <li class="activeprgrs"> Return</li>
+        <li>Recycled</li>
+      </ul>
+
+  </div>
+
+  <div style="display: flex; flex-direction: column; position: absolute; flex: 1; align-items: center; justify-content: center; top:50%; z-index: 100;">
+    <div id="loading" class="lds-ellipsis" style="top: 40%; left: 35%;position: absolute;"><div></div><div></div><div></div><div></div></div>
+    <h1 id="text1" style="color:#52b459;"> Loading... </h1>
+    <p id="text3" style="color:#52b459;"> * You cant speak on the phone while recycling </hp>
+      <br>
+      <br>
+      <br>
+      <br>
+  </div>
+  
+  <div style="z-index: 100; position: absolute; left: 5%; top: 20px">
+      <div style="display: none;" id="label-container"></div>
+      <h3  style="display: block;" id="bottleshow"></h3>
+  </div>
+
+  </div>
+
+  <div id="text2" style="display: none; flex-direction: column; flex: 1; align-items: center; justify-content: center; position: absolute; z-index: 100; width: 100%; top: 80%;">
+    <p style="color:#52b459;"> Hold the bottle as demonstraded and drop it</p>
+    <button id="backbtn" style="background-color: #52b459; width: 180px; cursor: pointer; height: 40px; border-radius: 25px; font-size: 20px; border: none; 
+    z-index: 1; color: white;" id="homebtn">Cancel</button> 
+  </div>
+       
+  <div class="overlaycameraimg" style="display: flex;flex: 1;align-items: center;justify-content: center; width: 100%;height: 100%;">
+    <!-- <img style="flex:1;opacity: 0.4;" src="Images/holdcrrct.png" alt=""> -->
+    <!-- <div class="scan-animation">
+      <span class="scan-animation__angle scan-animation__angle--top"></span>
+      <span class="scan-animation__angle scan-animation__angle--bottom"></span>
+    </div> -->
+  </div>
+   
+
+    <!-- <div id="overlaystation"> 
+        <div class="container">
+          <ul class="progressbar">
+            <li class="activeprgrs">Scan</li>
+            <li class="activeprgrs">Return</li>
+            <li class="activeprgrs">Recycled</li>
+          </ul>
+        </div>
+  
+        <div class="completedclass">
+          <img src="Images/recycledone.png" alt="">
+          <h2 style="color: white;" > Recycling completed </h2>
+          <h2 style="color: white;" > You got 2 CC </h2>
+          <button style="  background-color: green; width: 180px;
+          height: 40px;
+          border-radius: 25px;
+          font-size: 20px; border: none;
+          color: white;" id="homebtn">Go back</button> 
+        </div>
+        
+      </div> -->
+
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.3.1/dist/tf.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@0.8/dist/teachablemachine-image.min.js"></script>
+<script src="ImgDetect.js"></script>
+
+<style>
+  .overlaycameraimg {
+  position:absolute;
+  top:0;
+  z-index:25;
+  text-align:center;
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  background: url("Images/holdcrrct.png");
+  z-index: 10;
+  opacity: 0.5;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+img {
+  display:inline-block;
+}
+
+.scan-animation {
+    position: absolute;
+    transform: translate(-50%,-50%);
+    width: 320px;
+    height: 320px;
+    z-index: 1;
+    left: 100%;
+    top:40%;
+   
+  }
+  
+  .scan-animation__angle:before,
+  .scan-animation__angle:after {
+    content: "";
+    position: absolute;
+
+    width: 30px;
+    height: 30px;
+    border-style: solid;
+    border-color: #52b459;
+    border-width: 0px;
+    z-index: 1;
+ 
+  }
+  
+  .scan-animation__angle:before {
+    border-left-width: 6px;
+    left: 0;
+    
+  }
+  
+  .scan-animation__angle:after {
+    border-right-width: 6px;
+    right: 0;
+
+
+  }
+  
+  .scan-animation__angle--top:before,
+  .scan-animation__angle--top:after {
+    top: 0;
+    border-top-width: 6px;
+
+
+  }
+  
+  .scan-animation__angle--bottom:before,
+  .scan-animation__angle--bottom:after {
+    bottom: 0;
+    border-bottom-width: 6px;
+  }
+  
+  .scan-animation__angle--top:before {
+    border-top-left-radius: 50px;
+  }
+  
+  .scan-animation__angle--top:after {
+    border-top-right-radius: 50px;
+  }
+  
+  .scan-animation__angle--bottom:before {
+    border-bottom-left-radius: 50px;
+  }
+  
+  .scan-animation__angle--bottom:after {
+    border-bottom-right-radius: 50px;
+  }
+</style>
+
+</body>
+</html>
