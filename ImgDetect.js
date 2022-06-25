@@ -125,27 +125,27 @@ video.setAttribute('playsinline', '');
 //11 2far foor prediction[]
                console.log(prediction[11].className +  " " + prediction[13].probability.toFixed(2));
 
-                if (drB >= 0.80){
+                if (drB >= 0.60){
                   alert('dropblack' + drB)
                   return;
                 }
 
-                if (OpBlc >= 0.80){
+                if (OpBlc >= 0.60){
                   alert('openblack' + OpBlc)
                   return;
                 }
 
-                if (dropYt >= 0.80){
+                if (dropYt >= 0.60){
                   alert('dropYt' + dropYt)
                   return;
                 }
 
-                if (OpYt >= 0.80){
+                if (OpYt >= 0.60){
                   alert('dropYt' + OpYt)
                   return;
                 }
 
-                if (op_2 >= 0.80){
+                if (op_2 >= 0.60){
                   alert('op.2' + op_2)
                   return;
                 }else
