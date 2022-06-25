@@ -117,39 +117,39 @@ video.setAttribute('playsinline', '');
                 hidetxt()
                 load()
 
-                var drB=prediction[5].probability.toFixed(2);
-                var OpBlc=prediction[4].probability.toFixed(2);
-                var dropYt= prediction[8].probability.toFixed(2);
-                var OpYt=prediction[9].probability.toFixed(2);
-                var op_2=prediction[13].probability.toFixed(2);
+                var recycled=prediction[1].probability.toFixed(2);
+                // var OpBlc=prediction[4].probability.toFixed(2);
+                // var dropYt= prediction[8].probability.toFixed(2);
+                // var OpYt=prediction[9].probability.toFixed(2);
+                // var op_2=prediction[13].probability.toFixed(2);
 //11 2far foor prediction[]
-               console.log(prediction[11].className +  " " + prediction[13].probability.toFixed(2));
+               console.log(prediction[1].className +  " " + prediction[1].probability.toFixed(2));
 
                 if (recycled >= 0.30){
-                  alert('droped' + drB)
+                  alert('droped')
                   return;
                 }
 
-                if (OpBlc >= 0.60){
-                  alert('openblack' + OpBlc)
-                  return;
-                }
+                // if (OpBlc >= 0.60){
+                //   alert('openblack' + OpBlc)
+                //   return;
+                // }
 
-                if (dropYt >= 0.60){
-                  alert('dropYt' + dropYt)
-                  return;
-                }
+                // if (dropYt >= 0.60){
+                //   alert('dropYt' + dropYt)
+                //   return;
+                // }
 
-                if (OpYt >= 0.60){
-                  alert('dropYt' + OpYt)
-                  return;
-                }
+                // if (OpYt >= 0.60){
+                //   alert('dropYt' + OpYt)
+                //   return;
+                // }
 
-                if (op_2 >= 0.60){
-                  alert('op.2' + op_2)
-                  return;
-                }else
-                console.log('none')
+                // if (op_2 >= 0.60){
+                //   alert('op.2' + op_2)
+                //   return;
+                // }else
+                // console.log('none')
 
 
                 // dropYt
