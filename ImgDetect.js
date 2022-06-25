@@ -131,22 +131,22 @@ video.setAttribute('playsinline', '');
                 }
 
                 if (OpBlc >= 0.80){
-                  alert('openblack')
+                  alert('openblack' + OpBlc)
                   return;
                 }
 
                 if (dropYt >= 0.80){
-                  alert('dropYt')
+                  alert('dropYt' + dropYt)
                   return;
                 }
 
                 if (OpYt >= 0.80){
-                  alert('dropYt')
+                  alert('dropYt' + OpYt)
                   return;
                 }
 
                 if (op_2 >= 0.80){
-                  alert('op.2')
+                  alert('op.2' + op_2)
                   return;
                 }else
                 console.log('none')
