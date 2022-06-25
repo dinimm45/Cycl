@@ -7,7 +7,7 @@ video.setAttribute('playsinline', '');
     // https://github.com/googlecreativelab/teachablemachine-community/tree/master/libraries/image
 
     // the link to your model provided by Teachable Machine export panel
-    const URL = 'https://teachablemachine.withgoogle.com/models/P7PtLepi1/';
+    const URL = 'https://teachablemachine.withgoogle.com/models/EsjN-zGhN/';
 
 
     var backbtn=document.getElementById("backbtn");
@@ -125,8 +125,8 @@ video.setAttribute('playsinline', '');
 //11 2far foor prediction[]
                console.log(prediction[11].className +  " " + prediction[13].probability.toFixed(2));
 
-                if (drB >= 0.60){
-                  alert('dropblack' + drB)
+                if (recycled >= 0.30){
+                  alert('droped' + drB)
                   return;
                 }
 
