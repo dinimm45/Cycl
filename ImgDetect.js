@@ -7,7 +7,7 @@ video.setAttribute('playsinline', '');
     // https://github.com/googlecreativelab/teachablemachine-community/tree/master/libraries/image
 
     // the link to your model provided by Teachable Machine export panel
-    const URL = 'https://teachablemachine.withgoogle.com/models/EsjN-zGhN/';
+    const URL = "https://teachablemachine.withgoogle.com/models/EsjN-zGhN/";
 
 
     var backbtn=document.getElementById("backbtn");
@@ -17,7 +17,7 @@ video.setAttribute('playsinline', '');
     });
 
     function load(){
-      document.getElementById("text2").style.display="flex";
+      document.getElementById("text2").style.display="block";
     }
     function hidetxt(){
       document.getElementById("text1").style.display="none";
@@ -26,7 +26,13 @@ video.setAttribute('playsinline', '');
 
     }
 
-   
+    function overlay(){
+      document.getElementById("overlaystation").style.display="block";
+    }
+
+ 
+
+  
 
     let model, webcam, labelContainer, maxPredictions;
 
@@ -50,8 +56,8 @@ video.setAttribute('playsinline', '');
 
         // Convenience function to setup a webcam
         const flip = false; // whether to flip the webcam
-        const width = window.screen.width > 1000 ? window.screen.width : window.screen.width;
-        const height = window.screen.height > 1000 ? window.screen.height : window.screen.height;
+        const width = 550;
+        const height = 550;
         webcam = new tmImage.Webcam(width, height); // width, height, flip
         await webcam.setup( { facingMode: "environment" } ); // request access to the webcam
 
@@ -61,8 +67,8 @@ video.setAttribute('playsinline', '');
             const webCamVideo = document.getElementsByTagName('video')[0];
             webCamVideo.setAttribute("playsinline", true); // written with "setAttribute" bc. iOS buggs otherwise
             webCamVideo.muted = "true";
-            // webCamVideo.style.width = width + 'px';
-            // webCamVideo.style.height = height + 'px';
+            webCamVideo.style.width = width + 'px';
+            webCamVideo.style.height = height + 'px';
         } else {
             document.getElementById("webcam-container").appendChild(webcam.canvas);
         }
@@ -110,7 +116,7 @@ video.setAttribute('playsinline', '');
             const classPrediction =
                 prediction[i].className + ": " + prediction[i].probability.toFixed(2);
             labelContainer.childNodes[i].innerHTML = classPrediction;
-            // console.log(classPrediction);
+            console.log(classPrediction);
 
             var Imagedetect=document.getElementById("label-container");
                 document.getElementById("bottleshow").innerHTML=classPrediction;
@@ -122,56 +128,12 @@ video.setAttribute('playsinline', '');
                 // var dropYt= prediction[8].probability.toFixed(2);
                 // var OpYt=prediction[9].probability.toFixed(2);
                 // var op_2=prediction[13].probability.toFixed(2);
-//11 2far foor prediction[]
-               console.log(prediction[1].className +  " " + prediction[1].probability.toFixed(2));
-
-                if (recycled >= 0.30){
+                //11 2far foor prediction[]
+                console.log(prediction[1].className +  " " + prediction[1].probability.toFixed(2));
+                
+                if (recycled >= 0.20){
                   alert('droped')
                   return;
                 }
-
-                // if (OpBlc >= 0.60){
-                //   alert('openblack' + OpBlc)
-                //   return;
-                // }
-
-                // if (dropYt >= 0.60){
-                //   alert('dropYt' + dropYt)
-                //   return;
-                // }
-
-                // if (OpYt >= 0.60){
-                //   alert('dropYt' + OpYt)
-                //   return;
-                // }
-
-                // if (op_2 >= 0.60){
-                //   alert('op.2' + op_2)
-                //   return;
-                // }else
-                // console.log('none')
-
-
-                // dropYt
-                // Dropblc
-                // op.2
-                
-
-                
-        
-            
-            
-            
-            
-            
-
-                  
-            
-                // switch (classPrediction) {
-             
-                //    amountcounter();
-                //   overlay();
-             
-                //     }
         }
     }
