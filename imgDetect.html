@@ -1,174 +1,140 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Image detections</title>
-  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.3.1/dist/tf.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@0.8/dist/teachablemachine-image.min.js"></script>
-  <!--<button type="button" onclick="init()">Start</button>-->
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-</head>
-<body>
-  
+let video=document.getElementById("webcam-container");
+video.setAttribute('autoplay', '');
+video.setAttribute('muted', '');
+video.setAttribute('playsinline', '');
 
-  <div style="display: flex;flex: 1;align-items: center;justify-content: center;" id="webcam-container" class="completedclass">
+    // More API functions here:
+    // https://github.com/googlecreativelab/teachablemachine-community/tree/master/libraries/image
 
-    <div class="container" style="position: absolute; bottom: 50%; z-index: 100; top: 20px;">
-      <ul class="progressbar">
-        <li class="activeprgrs">Scan</li>
-        <li class="activeprgrs"> Return</li>
-        <li>Recycled</li>
-      </ul>
+    // the link to your model provided by Teachable Machine export panel
+    const URL = "https://teachablemachine.withgoogle.com/models/EsjN-zGhN/";
 
-  </div>
 
-  <div style="display: flex; flex-direction: column; position: absolute; flex: 1; align-items: center; justify-content: center; top:50%; z-index: 100;">
-    <div id="loading" class="lds-ellipsis" style="top: 40%; left: 35%;position: absolute;"><div></div><div></div><div></div><div></div></div>
-    <h1 id="text1" style="color:#52b459;"> Loading... </h1>
-    <p id="text3" style="color:#52b459;"> * You cant speak on the phone while recycling </hp>
-      <br>
-      <br>
-      <br>
-      <br>
-  </div>
-  
-  <div style="z-index: 100; position: absolute; left: 5%; top: 20px">
-      <div style="display: none;" id="label-container"></div>
-      <h3  style="display: block;" id="bottleshow"></h3>
-  </div>
+    var backbtn=document.getElementById("backbtn");
 
-  </div>
+    backbtn.addEventListener("click",function(){
+      window.location.href="home.html"
+    });
 
-  <div id="text2" style="display: none; flex-direction: column; flex: 1; align-items: center; justify-content: center; position: absolute; z-index: 100; width: 100%; top: 80%;">
-    <p style="color:#52b459;"> Hold the bottle as demonstraded and drop it</p>
-    <button id="backbtn" style="background-color: #52b459; width: 180px; cursor: pointer; height: 40px; border-radius: 25px; font-size: 20px; border: none; 
-    z-index: 1; color: white;" id="homebtn">Cancel</button> 
-  </div>
-       
-  <div class="overlaycameraimg" style="display: flex;flex: 1;align-items: center;justify-content: center; width: 100%;height: 100%;">
-    <!-- <img style="flex:1;opacity: 0.4;" src="Images/holdcrrct.png" alt=""> -->
-    <!-- <div class="scan-animation">
-      <span class="scan-animation__angle scan-animation__angle--top"></span>
-      <span class="scan-animation__angle scan-animation__angle--bottom"></span>
-    </div> -->
-  </div>
-   
+    function load(){
+      document.getElementById("text2").style.display="block";
+    }
+    function hidetxt(){
+      document.getElementById("text1").style.display="none";
+      document.getElementById("text3").style.display="none";
+      document.getElementById("loading").style.display="none";
 
-    <!-- <div id="overlaystation"> 
-        <div class="container">
-          <ul class="progressbar">
-            <li class="activeprgrs">Scan</li>
-            <li class="activeprgrs">Return</li>
-            <li class="activeprgrs">Recycled</li>
-          </ul>
-        </div>
-  
-        <div class="completedclass">
-          <img src="Images/recycledone.png" alt="">
-          <h2 style="color: white;" > Recycling completed </h2>
-          <h2 style="color: white;" > You got 2 CC </h2>
-          <button style="  background-color: green; width: 180px;
-          height: 40px;
-          border-radius: 25px;
-          font-size: 20px; border: none;
-          color: white;" id="homebtn">Go back</button> 
-        </div>
-        
-      </div> -->
+    }
 
-<script src="ImgDetect.js"></script>
+    function overlay(){
+      document.getElementById("overlaystation").style.display="block";
+    }
 
-<!-- <style>
-  .overlaycameraimg {
-  position:absolute;
-  top:0;
-  z-index:25;
-  text-align:center;
-  display: flex;
-  flex: 1;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 100%;
-  background: url("Images/holdcrrct.png");
-  z-index: 10;
-  opacity: 0.5;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-
-img {
-  display:inline-block;
-}
-
-.scan-animation {
-    position: absolute;
-    transform: translate(-50%,-50%);
-    width: 320px;
-    height: 320px;
-    z-index: 1;
-    left: 100%;
-    top:40%;
-   
-  }
-  
-  .scan-animation__angle:before,
-  .scan-animation__angle:after {
-    content: "";
-    position: absolute;
-
-    width: 30px;
-    height: 30px;
-    border-style: solid;
-    border-color: #52b459;
-    border-width: 0px;
-    z-index: 1;
  
-  }
-  
-  .scan-animation__angle:before {
-    border-left-width: 6px;
-    left: 0;
-    
-  }
-  
-  .scan-animation__angle:after {
-    border-right-width: 6px;
-    right: 0;
 
+  
 
-  }
-  
-  .scan-animation__angle--top:before,
-  .scan-animation__angle--top:after {
-    top: 0;
-    border-top-width: 6px;
+    let model, webcam, labelContainer, maxPredictions;
 
+    let isIos = false; 
+    // fix when running demo in ios, video will be frozen;
+    if (window.navigator.userAgent.indexOf('iPhone') > -1 || window.navigator.userAgent.indexOf('iPad') > -1) {
+      isIos = true;
+    }
 
-  }
-  
-  .scan-animation__angle--bottom:before,
-  .scan-animation__angle--bottom:after {
-    bottom: 0;
-    border-bottom-width: 6px;
-  }
-  
-  .scan-animation__angle--top:before {
-    border-top-left-radius: 50px;
-  }
-  
-  .scan-animation__angle--top:after {
-    border-top-right-radius: 50px;
-  }
-  
-  .scan-animation__angle--bottom:before {
-    border-bottom-left-radius: 50px;
-  }
-  
-  .scan-animation__angle--bottom:after {
-    border-bottom-right-radius: 50px;
-  }
-</style> -->
+    // Load the image model and setup the webcam
+    async function init() {
+        const modelURL = URL + "model.json";
+        const metadataURL = URL + "metadata.json";
 
-</body>
+        // load the model and metadata
+        // Refer to tmImage.loadFromFiles() in the API to support files from a file picker
+        // or files from your local hard drive
+        // Note: the pose library adds "tmImage" object to your window (window.tmImage)
+        model = await tmImage.load(modelURL, metadataURL);
+        maxPredictions = model.getTotalClasses();
+
+        // Convenience function to setup a webcam
+        const flip = false; // whether to flip the webcam
+        const width = 550;
+        const height = 550;
+        webcam = new tmImage.Webcam(width, height); // width, height, flip
+        await webcam.setup( { facingMode: "environment" } ); // request access to the webcam
+
+        if (isIos) {
+            document.getElementById('webcam-container').appendChild(webcam.webcam); // webcam object needs to be added in any case to make this work on iOS
+            // grab video-object in any way you want and set the attributes
+            const webCamVideo = document.getElementsByTagName('video')[0];
+            webCamVideo.setAttribute("playsinline", true); // written with "setAttribute" bc. iOS buggs otherwise
+            webCamVideo.muted = "true";
+            webCamVideo.style.width = width + 'px';
+            webCamVideo.style.height = height + 'px';
+        } else {
+            document.getElementById("webcam-container").appendChild(webcam.canvas);
+        }
+
+        try {
+            // append elements to the DOM
+            // if (isIos) {
+            //     document.getElementById("webcam-container").appendChild(webcam.webcam);
+            // }
+            // else{
+            //     document.getElementById("webcam-container").appendChild(webcam.canvas);
+            // }
+            labelContainer = document.getElementById("label-container");
+            for (let i = 0; i < maxPredictions; i++) { // and class labels
+                 labelContainer.appendChild(document.createElement("div"));
+            }
+            await webcam.play() ? console.log("working") : console.log("not working");
+            window.requestAnimationFrame(loop);
+        }
+        catch(e) {
+            console.log('Catch an error: ', e)
+        }
+    } 
+
+    //executes the init function
+    init()
+
+    async function loop() {
+        webcam.update(); // update the webcam frame
+        await predict();
+        window.requestAnimationFrame(loop);
+    }
+
+    // run the webcam image through the image model
+    async function predict() {
+        // predict can take in an image, video or canvas html element
+        // const prediction;
+        // if (isIos) {
+        //     prediction = await model.predict(webcam.webcam);
+        // } else {
+        //     prediction = await model.predict(webcam.canvas);
+        // }
+        const prediction = await model.predict(webcam.canvas);
+        for (let i = 0; i < maxPredictions; i++) {
+            const classPrediction =
+                prediction[i].className + ": " + prediction[i].probability.toFixed(2);
+            labelContainer.childNodes[i].innerHTML = classPrediction;
+            console.log(classPrediction);
+
+            var Imagedetect=document.getElementById("label-container");
+                document.getElementById("bottleshow").innerHTML=classPrediction;
+                hidetxt()
+                load()
+
+                var recycled=prediction[1].probability.toFixed(2);
+                // var OpBlc=prediction[4].probability.toFixed(2);
+                // var dropYt= prediction[8].probability.toFixed(2);
+                // var OpYt=prediction[9].probability.toFixed(2);
+                // var op_2=prediction[13].probability.toFixed(2);
+                //11 2far foor prediction[]
+                console.log(prediction[1].className +  " " + prediction[1].probability.toFixed(2));
+                
+                if (recycled >= 0.20){
+                  alert('droped')
+                  return;
+                }
+        }
+    }
 </html>
