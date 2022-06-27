@@ -123,9 +123,10 @@ video.setAttribute('playsinline', '');
                 hidetxt()
                 load()
 
-                var recycled=prediction[1].probability.toFixed(2);
+              var recycled=prediction[1].probability.toFixed(2);
                 var Stn=prediction[0].probability.toFixed(2);
                 var TooFar=prediction[2].probability.toFixed(2);
+                var hold= prediction[3].probability.toFixed(2);
                 var RecycleInfo=document.getElementById('info');
                 // var OpBlc=prediction[4].probability.toFixed(2);
                 // var dropYt= prediction[8].probability.toFixed(2);
@@ -140,15 +141,19 @@ video.setAttribute('playsinline', '');
                   return;
                 }
 
-                if (Stn >= 0.70){
+                if (Stn >= 0.90){
                     RecycleInfo.innerHTML='Please come closer'
                     return;
                   }
 
-                  if (TooFar >= 0.70){
+                  if (TooFar >= 0.90){
                     RecycleInfo.innerHTML='Please come closer'
                     return;
-                  }else
-                  RecycleInfo.innerHTML='drop now'
+                  }
+                  
+                  if (hold >= 0.99){
+                    RecycleInfo.innerHTML='drop now'
+                    return;
+                  }
         }
     }
