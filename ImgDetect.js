@@ -152,7 +152,7 @@ video.setAttribute('playsinline', '');
                   }
                   
                   if (hold >= 0.99){
-                    RecycleInfo.innerHTML='drop now'
+                    RecycleInfo.innerHTML='drop now now!'
                     return;
                   }
         }
