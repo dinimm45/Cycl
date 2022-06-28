@@ -147,12 +147,12 @@ video.setAttribute('playsinline', '');
                     return;
                   }
 
-                   if (TooFar > 0.00){
+                   if (TooFar > 0.05){
                     RecycleInfo.innerHTML= 'Move the camera closer to your hand &#128721'
                     return;
                   }
 
-                  if (bottleOut >= 0.00){
+                  if (bottleOut >= 0.10){
                         RecycleInfo.innerHTML='Hold the bottle correctly'
                         return;
                   }
