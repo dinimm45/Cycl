@@ -153,16 +153,13 @@ video.setAttribute('playsinline', '');
                   }
 
                   if (bottleOut >= 0.00){
-                        RecycleInfo.innerHTML='Hold the bottle correctly please'
+                        RecycleInfo.innerHTML='Hold the bottle correctly'
                         return;
                   }
                   
                   if (hold >= 1.00){
-                       setTimeout(() => {
                        RecycleInfo.innerHTML='Drop your bottle carefully &#128516; &#9851'
                     return;
-                        
-                    }, 2000);
                   }
         }
     }
