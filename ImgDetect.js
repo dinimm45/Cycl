@@ -147,7 +147,7 @@ video.setAttribute('playsinline', '');
                     return;
                   }
 
-                  if (TooFar >= 0.10){
+                  if (TooFar >= 0.05){
                     RecycleInfo.innerHTML='Please come closer'
                     return;
                   }
