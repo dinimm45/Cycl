@@ -137,27 +137,27 @@ video.setAttribute('playsinline', '');
                 
                 console.log(prediction[1].className +  " " + prediction[1].probability.toFixed(2));
                 
-                if (recycled >= 0.50){
+                if (recycled >= 0.20){
                   alert('droped')
                   return;
                 }
 
-                if (Stn >= 0.05){
+                if (Stn >= 0.01){
                     RecycleInfo.innerHTML='Please hold the bottle top of the hole'
                     return;
                   }
 
-                  if (TooFar >= 0.05){
+                  if (TooFar >= 0.01){
                     RecycleInfo.innerHTML='Please come closer'
                     return;
                   }
 
-                  if (bottleOut >= 0.05){
+                  if (bottleOut >= 0.01){
                     RecycleInfo.innerHTML='Please hold the bottle top of the hole'
                     return;
                   }
                   
-                  if (hold >= 0.99){
+                  if (hold >= 1.00){
                     RecycleInfo.innerHTML='drop now'
                     return;
                   }
