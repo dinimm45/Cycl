@@ -142,8 +142,8 @@ video.setAttribute('playsinline', '');
                   return;
                 }
 
-                if (Stn >= 0.10){
-                    RecycleInfo.innerHTML='Please come closer'
+                if (Stn >= 0.05){
+                    RecycleInfo.innerHTML='Please hold the bottle top of the hole'
                     return;
                   }
 
@@ -152,8 +152,8 @@ video.setAttribute('playsinline', '');
                     return;
                   }
 
-                  if (bottleOut >= 0.10){
-                    RecycleInfo.innerHTML='Please come closer'
+                  if (bottleOut >= 0.05){
+                    RecycleInfo.innerHTML='Please hold the bottle top of the hole'
                     return;
                   }
                   
