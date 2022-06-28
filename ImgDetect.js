@@ -147,18 +147,21 @@ video.setAttribute('playsinline', '');
                     return;
                   }
 
-                  if (TooFar > 0.00){
-                    RecycleInfo.innerHTML= 'Move the camera closer to your hand. Make sure the camera covers top of the station only &#128721'
+                   if (TooFar > 0.00){
+                    RecycleInfo.innerHTML= 'Move the camera closer to your hand &#128721'
                     return;
                   }
 
                   if (bottleOut >= 0.00){
-                    RecycleInfo.innerHTML='Drop your bottle carefully &#128516; &#9851'
-                    return;
+                    setTimeout(() => {
+                        RecycleInfo.innerHTML='Hold the bottle correctly'
+                        return;
+                        
+                    }, 2000);
                   }
                   
                   if (hold >= 1.00){
-                    RecycleInfo.innerHTML='drop now'
+                    RecycleInfo.innerHTML='Drop your bottle carefully &#128516; &#9851'
                     return;
                   }
         }
