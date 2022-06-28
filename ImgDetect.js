@@ -137,23 +137,23 @@ video.setAttribute('playsinline', '');
                 
                 console.log(prediction[1].className +  " " + prediction[1].probability.toFixed(2));
                 
-                if (recycled >= 0.20){
+                 if (recycled >= 0.20){
                   alert('droped')
                   return;
                 }
 
-                if (Stn >= 0.01){
+                if (Stn > 0.00){
                     RecycleInfo.innerHTML='Please hold the bottle top of the hole'
                     return;
                   }
 
-                  if (TooFar >= 0.01){
-                    RecycleInfo.innerHTML='Please come closer'
+                  if (TooFar > 0.00){
+                    RecycleInfo.innerHTML= 'Move the camera closer to your hand. Make sure the camera covers top of the station only &#128721'
                     return;
                   }
 
-                  if (bottleOut >= 0.01){
-                    RecycleInfo.innerHTML='Please hold the bottle top of the hole'
+                  if (bottleOut >= 0.00){
+                    RecycleInfo.innerHTML='Drop your bottle carefully &#128516; &#9851'
                     return;
                   }
                   
