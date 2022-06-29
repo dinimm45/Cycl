@@ -138,7 +138,7 @@ video.setAttribute('playsinline', '');
                 
                 console.log(prediction[1].className +  " " + prediction[1].probability.toFixed(2));
                 
-                if (recycled >= 0.70){
+                if (recycled >= 0.90){
                     alert('droped')
                     return;
                   }
