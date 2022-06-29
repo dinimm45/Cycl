@@ -156,7 +156,7 @@ video.setAttribute('playsinline', '');
                     }
   
                     if (bottleOut >= 0.05){
-                          RecycleInfo.innerHTML='Hold the bottle correctly'
+                          RecycleInfo.innerHTML='Hold the bottle from the side'
                           DropLight.style.borderColor='red';
                           return;
                     }
