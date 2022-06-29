@@ -137,29 +137,33 @@ video.setAttribute('playsinline', '');
                 
                 console.log(prediction[1].className +  " " + prediction[1].probability.toFixed(2));
                 
-                 if (recycled >= 0.20){
-                  alert('droped')
-                  return;
-                }
-
-                if (Stn > 0.00){
-                    RecycleInfo.innerHTML='Please hold the bottle top of the hole'
+                if (recycled >= 0.20){
+                    alert('droped')
                     return;
                   }
-
-                   if (TooFar > 0.00){
-                    RecycleInfo.innerHTML= 'Move the camera closer to your hand &#128721'
-                    return;
-                  }
-
-                  if (bottleOut >= 0.05){
-                        RecycleInfo.innerHTML='Hold the bottle correctly'
-                        return;
-                  }
-                  
-                  if (hold >= 1.00){
+  
+                  if (Stn > 0.00){
+                      RecycleInfo.innerHTML='Please hold the bottle top of the hole'
+                      DropLight.style.borderColor='red';
+                      return;
+                    }
+  
+                     if (TooFar > 0.00){
+                      RecycleInfo.innerHTML= 'Move the camera closer to your hand &#128721'
+                      DropLight.style.borderColor='red';
+                      return;
+                    }
+  
+                    if (bottleOut >= 0.05){
+                          RecycleInfo.innerHTML='Hold the bottle correctly'
+                          DropLight.style.borderColor='red';
+                          return;
+                    }
+                    
+                    if (hold >= 1.00){
                         setTimeout(() => {
                             RecycleInfo.innerHTML='Drop your bottle carefully &#128516; &#9851'
+                            DropLight.style.borderColor='green';
                             return;
                             
                         }, 2000);
