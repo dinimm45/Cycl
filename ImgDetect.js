@@ -129,6 +129,7 @@ video.setAttribute('playsinline', '');
                 var hold= prediction[3].probability.toFixed(2);
                 var bottleOut=prediction[4].probability.toFixed(2);
                 var RecycleInfo=document.getElementById('info');
+                var DropLight=document.getElementById('DropColor')
                 // var OpBlc=prediction[4].probability.toFixed(2);
                 // var dropYt= prediction[8].probability.toFixed(2);
                 // var OpYt=prediction[9].probability.toFixed(2);
