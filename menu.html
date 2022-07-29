@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+<header>
+
+  <meta charset="utf-8" />
+  <title>Locate the user</title>
+  <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
+  <script src="https://www.gstatic.com/firebasejs/7.22.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.22.0/firebase-analytics.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-database.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/live/3.1/firebase.js"></script>
+  <script src="https://unpkg.com/@turf/turf@6/turf.min.js"></script>
+  <link href="styles.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <meta name="theme-color" content="white" />
+
+  <div class="container">
+    <h1>Menu</h1>
+  </div>
+</header>
+
+<body style=" background-color: white;
+font-family:  Verdana, Geneva, Tahoma, sans-serif;
+
+  -youbkit-touch-callout: none; /* iOS Safari */
+    -youbkit-user-select: none;   /* Chrome 6.0+, Safari 3.1+, Edge & Opera 15+ */
+    -moz-user-select: none;       /* Firefox */
+    -ms-user-select: none;        /* IE 10+ and Edge */
+    user-select: none;
+    -webkit-touch-callout: none;                /* prevent callout to copy image, etc when tap to hold */
+-webkit-text-size-adjust: none;             /* prevent webkit from resizing text to fit */
+-webkit-user-select: none;  ">
+
+  <nav class="nav">
+    <a href="Redeem.html" class="nav__link">
+      <i class="material-icons nav__icon">redeem</i>
+      <span class="nav__text">Redeem</span>
+    </a>
+
+    <a href="home.html" class="nav__link">
+      <i class="material-icons nav__icon">home</i>
+      <span class="nav__text">Home</span>
+    </a>
+    <!-- <a href="#" class="nav__link">
+  <i class="material-icons nav__icon">person</i>
+  <span class="nav__text">Profile</span>
+  </a> -->
+    <a href="#" class="nav__link nav__link--active">
+      <i class="material-icons nav__icon">list</i>
+      <span class="nav__text">Menu</span>
+    </a>
+  </nav>
+
+  <section class="features">
+    <div>
+      
+      <div id="hideprofile" style="display: flex; margin-right: 45px;">
+        <i class="material-icons nav__icon" style="position: relative;
+        margin-left: 15px;">person</i>
+       <a
+       style="text-decoration: none; color: #000000;margin-left: 15px;"
+       href="profile.html">Profile</a>
+      </div>
+      <hr>
+      
+      <div style="display: flex; margin-right: 45px;">
+        <i class="material-icons nav__icon" style="position: relative;
+        margin-left: 15px;">settings</i>
+       <a
+       style="text-decoration: none; color: #000000;margin-left: 15px;"
+       href="passreset.html">Settings</a>
+      </div>
+
+      <hr>
+      <div style="display: flex; margin-right: 45px;">
+        <i class="material-icons nav__icon" style="position: relative;
+        margin-left: 15px;">info</i>
+      <a
+      style="text-decoration: none; color: #000000;margin-left: 15px;"
+      href="faq.html">Faqs</a>
+      </div>
+      <hr>
+
+      <div style="display: flex; margin-right: 45px;">
+        <i class="material-icons nav__icon" style="position: relative;
+        margin-left: 15px;">book</i>
+      <a
+      style="text-decoration: none; color: #000000;margin-left: 15px;"
+      href="terms.html">Terms</a>
+      </div>
+      <hr>
+
+
+      <div style="display: flex; margin-right: 45px;">
+        <i class="material-icons nav__icon" style="position: relative;
+        margin-left: 15px;">policy</i>
+      <a
+      style="text-decoration: none; color: #000000;margin-left: 15px;"
+      href="Privacy.html">Policy</a>
+      </div>
+      <hr>
+
+      <div id="logOut" style="display: flex; margin-right: 45px;color:#52b459;">
+        <i class="material-icons nav__icon color" style="position: relative;
+        margin-left: 15px;">logout</i>
+        <a 
+        style="text-decoration: none; color: #52b459;margin-left: 15px;"
+        href="#">Logout</a>
+      </div>
+
+      <div id="hidesignin" style="display: flex; margin-right: 45px;position: absolute; display: none;">
+        <i class="material-icons nav__icon color" style="position: relative;
+        margin-left: 15px;">login</i>
+        <a 
+        style="text-decoration: none; color: #000000;margin-left: 15px;"
+        href="login.html">Login</a>
+      </div>
+       </section>
+
+       <section>
+        <a href="" id="deleteAcc"
+        style="color: red;margin-left: 15px;">Delete account</a>     
+        </section>
+
+
+  </div>
+
+
+  <style>
+    /* @import url(//fonts.googleapis.com/css?family=Open+Sans:400,700,800,300);*/
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Open Sans', 'Helvetica Neue', Helvetica, sans-serif;
+      line-height: 1.45;
+      background-color: whitesmoke;
+    }
+
+    header {
+      color: #FFFFFF;
+      background-color: #52b459;
+      padding: 40px 0;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 48px;
+      margin: 0 0 16px 0;
+    }
+
+    h2 {
+      font-weight: 300;
+      font-size: 40px;
+      margin: 0 0 16px 0;
+    }
+
+    section {
+      text-align: center;
+      padding: 30px 0;
+      margin: 5px;
+    }
+
+    .loader {
+      border: 5px solid white;
+      /* Light grey */
+      border-top: 5px solid #148f1c;
+      /* Blue */
+      border-radius: 50%;
+      width: 70px;
+      height: 70px;
+      animation: spin 2s linear infinite;
+      justify-content: center;
+      display: flex;
+      left: 40%;
+      position: absolute;
+    }
+
+    @keyframes spin {
+      0% {
+        transform: rotate(0deg);
+      }
+
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+  </style>
+
+  <script src="js/menu.js"> </script>
+</body>
+
+</html>

@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	 <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+	 <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+     <link rel="stylesheet" href="styles.css">
+       <!-- favicon link -->
+  <link rel="shortcut icon" href="imagesweb/32.png" type="image/x-icon">
+  <link rel="icon" href="imagesweb/32.png" type="image/x-icon">
+     <title>Cycl</title>
+</head>
+
+
+<body class="body">
+    <h1 class="head">FAQs</h1>
+    <div class="accordion">
+        <p class="title">How to recycle?</p>
+        <span class="show">+</span>
+    </div>
+    <div class="info">
+        <p>
+            To recycle you bottle, Find a nearby recycle station, then Scan your bottle on vertical position. 
+        </p>
+
+        <ul>
+            <li>1. Find a nearby recycle station </li>
+            <li>2. Scan your bottle on vertical position</li>
+            <li>3.Position your bottle on top of the bin</li>
+            <li> have your phone camera over the bottle while holding it with the other hand</li>
+            <li> Drop it and get rewarded</li>
+
+            <p> Make sure that the camera covers only the black part of the station</p>
+
+        </ul>
+    </div>
+    <div class="accordion">
+        <p class="title">Why does the stations have a number?</p>
+        <span class="show">+</span>
+    </div>
+    <div class="info">
+        <p> Every recycle station has a unique number. These numbers are used to tell the difference between the stations.
+            You can see the station number on every station under the logo.
+        </p>
+    </div>
+    <div class="accordion">
+        <p class="title">What can i use with my Cycl Coins?</p>
+        <span class="show">+</span>
+    </div>
+    <div class="info">
+        <p> When you safe enough CC, they can be used to redeem coupons and get give aways.
+        </p>
+    </div>
+    <div class="accordion">
+        <p class="title">I recycled my bottle but didnt get any coins</p>
+        <span class="show">+</span>
+    </div>
+    <div class="info">
+        <p> We are very sorry to hear that. With Cycl we want make sure that you get rewarded for every bottle you recycle without facing on any problems.
+            But if this type of incident happens we would lovely like to hear from you by sending us email on contact.cycl@gmail.com.
+
+            When recycling with Cycl the app may have challanges with the lightning in the area or if the phone camera is not working as expected.
+        </p>
+    </div>
+
+    <script>
+        var shows = document.querySelectorAll(".show");
+var infos = document.querySelectorAll(".info");
+var accordions = document.querySelectorAll(".accordion");
+
+for (let i = 0; i < shows.length; i++) {
+  shows[i].onclick = function() {
+    for (let j = 0; j < shows.length; j++) {
+      if (shows[j] != this) {
+        infos[j].classList.remove("reveal");
+        shows[j].innerHTML = "+";
+        accordions[j].classList.remove("radius");
+      }
+    }
+    accordions[i].classList.toggle("radius");
+    infos[i].classList.toggle("reveal");
+    if (infos[i].className.includes("reveal")) shows[i].innerHTML = "-";
+    else shows[i].innerHTML = "+";
+  };
+}
+
+
+    </script>
+
+    <style>
+        *{
+    box-sizing: border-box;
+    font-family: Verdana, sans-serif;
+    user-select: none;
+}
+body{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+    padding: 0;
+    margin: 0;
+    min-height: 100vh;
+}
+.head{
+    color: #52b459;
+    text-shadow: 2px 2px 1px rgba(0, 0, 0, .3);
+}
+.accordion{
+    height: 50px;
+    width: 500px;
+    margin-top: 20px;
+    background-color: #52b459;
+    color: #fff;
+    border-radius:10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 4px 14px;
+    position: relative;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, .2);
+
+}
+
+.title{
+    font-size: large;
+}
+.show{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: large;
+    cursor: pointer;
+    background-color: #fff;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, .2);
+    color: #000;
+    width: 40px;
+    height: 40px;
+    border-radius: 4px;
+}
+.info{
+    height: 0;
+    width: 500px;
+    background-color: transparent;
+    color: #000;
+    display: flex;
+    align-items: center;
+    padding: 0 14px;
+    position: relative;
+    overflow: hidden;
+    border: 0;
+    transition: height .4s;
+}
+.info.reveal{
+    min-height: 150px;
+    border: 1px solid #52b459;
+    border-radius: 0 0 10px 10px;
+    transition: height .4s;
+}
+.accordion.radius{
+border-radius:10px 10px  0 0 ;
+}
+
+@media screen and (max-width: 500px){
+    .accordion, .info{
+        width: 400px;
+    }
+}
+@media screen and (max-width: 400px){
+    .accordion, .info{
+        width: 350px;
+    }
+}
+@media screen and (max-width: 350px){
+    .accordion, .info{
+        width: 300px;
+    }
+}
+    </style>
+
+    </body>
+
+</html>

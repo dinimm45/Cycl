@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	 <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+	 <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+     <link rel="stylesheet" href="styles.css">
+     <title>Cycl</title>
+</head>
+
+
+<body class="body">
+    <a style="color: #52b459;" href="menu.html">Go Back</a></p>
+    <h1 class="head">FAQs</h1>
+    <div class="accordion">
+        <p class="title">How to recycle?</p>
+        <span class="show">+</span>
+    </div>
+    <div class="info">
+        <p style="font-size:15px ;">
+            To recycle your plastic bottle follow these stages.
+             <ul style="font-size:9px ;">
+                <li>1. find a nearby recycle station</li>
+                <li>2. Scan your bottle holding it sideways</li>
+                <li>3. Hold your bottle on top of the station and the camera above it</li>
+                <li>4. Make sure the phone camera covers top of the station only and your hand holding the bottle</li>
+                <li>5. Drop your plastic bottle carefully</li>
+            </ul>
+        </p>
+    </div>
+    <div class="accordion">
+        <p class="title">Stations</p>
+        <span class="show">+</span>
+    </div>
+    <div class="info">
+        <p> Recycle stations can be found on the map, to tell what station you have to use, check if the station number is equal to the one you see
+            on the app.
+        </p>
+    </div>
+    <div class="accordion">
+        <p class="title">What can i use with my Cycl Coins?</p>
+        <span class="show">+</span>
+    </div>
+    <div class="info">
+        <p> You can spend your Coins on discounts from restaurants, barbershops, donations and much more.
+        </p>
+    </div>
+    <div class="accordion">
+        <p class="title">I was not able to recycle with the Cycl app</p>
+        <span class="show">+</span>
+    </div>
+    <div class="info">
+        <p style="font-size:12px ;"> We are very sorry to hear about that. With Cycl we want make sure that you get rewarded for every bottle you recycle, without facing any problems.
+            But if this type of incidents takes place we would love to hear from you by sending us email on team@cyclmobileapp.com.
+        </p>
+    </div>
+
+    <script>
+        var shows = document.querySelectorAll(".show");
+var infos = document.querySelectorAll(".info");
+var accordions = document.querySelectorAll(".accordion");
+
+for (let i = 0; i < shows.length; i++) {
+  shows[i].onclick = function() {
+    for (let j = 0; j < shows.length; j++) {
+      if (shows[j] != this) {
+        infos[j].classList.remove("reveal");
+        shows[j].innerHTML = "+";
+        accordions[j].classList.remove("radius");
+      }
+    }
+    accordions[i].classList.toggle("radius");
+    infos[i].classList.toggle("reveal");
+    if (infos[i].className.includes("reveal")) shows[i].innerHTML = "-";
+    else shows[i].innerHTML = "+";
+  };
+}
+
+
+    </script>
+
+    <style>
+        *{
+    box-sizing: border-box;
+    font-family: Verdana, sans-serif;
+    user-select: none;
+}
+body{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+    padding: 0;
+    margin: 0;
+    min-height: 100vh;
+}
+.head{
+    color: #52b459;
+    text-shadow: 2px 2px 1px rgba(0, 0, 0, .3);
+}
+.accordion{
+    height: 50px;
+    width: 500px;
+    margin-top: 20px;
+    background-color: #52b459;
+    color: #fff;
+    border-radius:10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 4px 14px;
+    position: relative;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, .2);
+
+}
+
+.title{
+    font-size: large;
+}
+.show{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: large;
+    cursor: pointer;
+    background-color: #fff;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, .2);
+    color: #000;
+    width: 40px;
+    height: 40px;
+    border-radius: 4px;
+}
+.info{
+    height: 0;
+    width: 500px;
+    background-color: transparent;
+    color: #000;
+    display: flex;
+    align-items: center;
+    padding: 0 14px;
+    position: relative;
+    overflow: hidden;
+    border: 0;
+    transition: height .4s;
+}
+.info.reveal{
+    min-height: 150px;
+    border: 1px solid #52b459;
+    border-radius: 0 0 10px 10px;
+    transition: height .4s;
+}
+.accordion.radius{
+border-radius:10px 10px  0 0 ;
+}
+
+@media screen and (max-width: 500px){
+    .accordion, .info{
+        width: 400px;
+    }
+}
+@media screen and (max-width: 400px){
+    .accordion, .info{
+        width: 350px;
+    }
+}
+@media screen and (max-width: 350px){
+    .accordion, .info{
+        width: 300px;
+    }
+}
+    </style>
+
+    </body>
+
+</html>

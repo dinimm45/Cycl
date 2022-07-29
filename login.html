@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html>
 <head>
 <title>cycl login</title>
@@ -12,29 +11,83 @@
  <script src="https://www.gstatic.com/firebasejs/live/3.1/firebase.js"></script>
  <link rel="stylesheet" href="styles.css">
 </head>
-<body class="body">
+<body class="body" style="display: flex; flex: 1; flex-direction: column; align-items: center; justify-content: start; background-color: white;">
+  <div id="loginload" class="loader"></div>
+    <img src="Images/loginlogo.jpg" style="padding: 20px; width: 160px;" id="appLogoID">
+         <h2 style="color:#52b459; position: relative; bottom: 5%; z-index: 2;">Cycl</h2>    
+  <div  class="login-page" onsubmit="return false;">
+      <div class="form" style="z-index: 1; bottom: 20%;">
+        <form class="register-form">
+          <input type="text" placeholder="name"/>
+          <input type="password" placeholder="password"/>
+          <input type="text" placeholder="email address"/>
+          <button>create</button>
+          <p class="message">Already registered? <a href="#">Sign In</a></p>
+          <p class="message">Forgot your password? <a href="resetpass.html">Sign In</a></p>
+        </form>
+        <form class="login-form">
+          <input id="email"  type="text" placeholder="email" onkeypress="return event.charCode != 32"/>
+          <input id="passwrd" type="password" placeholder="password"/>
+          <button id="login">login</button>
+          <!-- <div class='g-sign-in-button' id="signInWithGoogle">
+            <div class=content-wrapper>
+            <div class='logo-wrapper'>  
+              <img src='https://developers.google.com/identity/images/g-logo.png'>
+              </div>  
+              <span class='text-container'> 
+                <span style="color: #000000;">Sign in with Google</span>
+              </span>
+            </div>  
+          </div> -->
+          
+          <!-- <div class='g-sign-in-button' id="signInWithFb">
+            <div class=content-wrapper>
+            <div class='logo-wrapper'>  
+              <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJAAAACQCAIAAABoJHXvAAAABmJLR0QA/wD/AP+gvaeTAAAERElEQVR4nO3dPWgTYRzH8ee5yyWX5FJiakEtbUV8QalFFHVwsoiKIurspAiODrqJoKOLk5uLCCqOvuDi1C4O4iQFW1+r1vgCpm2aNE1ydw6d6kuaJ/Fyz+/6+0wdkvCn39zdc5f0Ks2bU4JwGGEPQGoYDAyDgWEwMAwGhsHAMBgYBgPDYGAYDAyDgWEwMAwGhsHAMBgYBgPDYGAYDAyDgWEwMAwGhsHAMBgYBgPDYGAYDAyDgWEwMAwGhsHAMBgYBgPDYGAYDAyDgWEwMAwGJhb2AB21JmkM5qzetNmfNpMx6VjSMqQQYrrq+b5Y/GGm6s9Wve8V70vJ/Tjnlup+yEMvFf1gjiWP9ttH++z96+JrU6bq0z8U3Y33vwUxWGuiHGzAMS8OOac2pbos2fKLZOKtPzcI0Qxmm/Lyzsz5wbRt6vXrbl8Eg23Lxu4OrxrMWWEPEoioBdvdE390KLfajuzqN1LBdnRbT490O20csfQXnXfimqTx4GAu2rVElILd2JftTSuv2uFEJNjxAfvEejvsKZrU1pl4FIJJIa7syoQ9RfPa2mlHIdixAXt7RBfxf4pCsNObU2GP0DnwwboTxuG+RNhTdA78edhwb2LxinsL3hfdWxPlsUJtquS5/t/XAnWvjeECAB/sQG8rm5fri0vPZ6+/nPP0+vBkefDB9vS0stw4M1K482b+vw/TAdjHMMuQW7LK77nbr8ugtQR6sI1dZlzxAFb3xNUXxYDm6QDsYC1ci3o4WZmcc4MYpjNWXLAnnypBTNIx2MFyCeX5R/ILQUzSMdjBkorfAKi4PvT+UKAHsxT3iO+LLtyJ12/AgykuEWeqml23UIcdTFWpBr59rbRgNfgNbIUF05LaRs9goVM7DDMYGAYDw2BgGAwMg4GRGv4f52t7u06uTzbzyFxCZuMK77ly3f86r3YuNppfODs6rfSUQOn4FYEe29iQCeRL16mYVH3lx5N6XRzhLnEZEzP1sEdYgsGWMc5gWManGQxHsebny3p94MlgjUzMaHaXDgZr7JVm+0PBYI3ptkQUDNaYbisOwWCNveIWBsTzxdtZBsMxOefOa7dIZLB/0/AAJhisAd0uSi3S8eOVHtvINHdDmwtDzrmt6eZfeTRfPTtaaPLBPxf8af2+eKrjxys/Kt6P5v7EpFBVO8aU6/67ol6XmlRxlwiGwcAwGBgGA8NgYBgMDIOBYTAwDAaGwcAwGBgGA8NgYBgMDIOBYTAwDAaGwcAwGBgGA8NgYBgMDIOBYTAwDAaGwcAwGBgGA8NgYBgMDIOBYTAwDAaGwcAwGBgGA8NgYBgMDIOB0fE+Hc2796acL7l9jtnvmH1pM5swUjHZZUnHklLIYs0r1f0F1/82730uuVMl99n3atgjtws72FihPlbQ8QZDweEuEQyDgWEwMAwGhsHAMBgYBgPDYGAYDAyDgWEwMAwGhsHAMBiYX41w72AwSdmBAAAAAElFTkSuQmCC">
+              </div>  
+              <span class='text-container'> 
+                <span style="color: #000000;">Sign in with Facebook</span>
+              </span>
+            </div>  
+          </div> -->
+          <p class="message" id="loginmessage" class="mbmr" style="color:red;"></p>
+          <p style="color: #000000;" class="message">Not registered ? <a href="member.html">Create an account</a></p>
+          <p class="message" style="color: #000000;">Forgot your password ? <a href="resetpass.html">Get new password</a></p>
+  
+        </form>
+      </div>
+     
+    </div>
 
-<br></br>
-<img class="logo" src="Images/hovedlogo.png">
 
+    <style>
+      .loader {
+  border: 5px solid whitesmoke; /* Light grey */
+  border-top: 5px solid #148f1c; /* Blue */
+  border-radius: 50%;
+  width: 70px;
+  height: 70px;
+  animation: spin 2s linear infinite;
+  justify-content: center;
+  display: flex;
+  left: 40%;
+  top: 30%;
+  position: absolute;
+  z-index: 2;
+  display: none;
+}
 
-<img style="width:25px; height:20px; position:fixed;left:27%;top:30%"src="Images/email.png">
-<input class="inputemail" id="email" placeholder="Email" type="text" width="200px"></input>
-<br></br>
-<img style="width:25px; height:20px; position:fixed;left:27%;top:40%" src="Images/lock.png">
-<input class="inputpassword" id="passwrd" placeholder="password" type="password" width="200px"></input>
-<br></br>
-<button class="loginbtn" style="width:200px; height: 30px; background-color:; color:white"id="login">Login</button>
-<br></br>
-<button class="rgstr" id="forgotpass">Forgot you're password?</button>
-<br></br>
-<button class="mbmr" id="signup">Not a member? Click here to get registered now!</button>
-<br></br>
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+    </style>
+    
 
 
 
 <!--Med koden under vil den koble seg til javascript filen firebaseauth.js.
 alt jeg skriver der vil kunne samkjøres med html elementene som er her.-->
-  <script src="login.js"></script>
+  <script src="js/login.js"></script>
 </body>
 <html>

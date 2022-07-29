@@ -1,280 +1,758 @@
-<!DOCTYPE html>
 <html>
 
 <head>
-	<script></script>
-	<script src="https://www.gstatic.com/firebasejs/7.22.0/firebase-app.js"></script>
-	<script src="https://www.gstatic.com/firebasejs/7.22.0/firebase-analytics.js"></script>
-	<script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-database.js"></script>
-	 <script src="https://www.gstatic.com/firebasejs/live/3.1/firebase.js"></script>
-	 <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
-	 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBN_faR-aBh8QCN6JNZ7BPxh2mXYTN4RwY&callback=initMap"></script>
-	 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBN_faR-aBh8QCN6JNZ7BPxh2mXYTN4RwY&callback=initMap&libraries=geometry"></script>
-	 <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link href= "styles.css" rel="stylesheet">
-<title>Cycl</title>
+  <!-- Required meta tags -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta charset="utf-8">
+
+  <!-- important meta tags for social media -->
+
+  <!-- Primary Meta Tags -->
+  <title>Cycl - Find your station & recycle</title>
+  <meta name="title" content="Cycl - Find your station & recycle">
+  <meta name="description" content="Cycl will help you to find your nearest station. You can reacycle easyily ">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="">
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="">
+  <meta property="twitter:title" content="TinMate - Find your mate & chat together">
+  <meta property="twitter:description" content="TinMate will help you to find your nearest mate. You can chat with them easily ">
+  <meta property="twitter:image" content="images/tinmate.png">
+
+  <!-- stylesheet link -->
+  <link rel="stylesheet" href="css/styles.css">
+
+  <!-- bootstrap link -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+  <!-- google fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Montserrat|Pacifico|Spartan" rel="stylesheet">
+
+  <!-- favicon link -->
+  <link rel="shortcut icon" href="imagesweb/32.png" type="image/x-icon">
+  <link rel="icon" href="imagesweb/32.png" type="image/x-icon">
+  <!-- page title -->
+  <title>Cycl</title>
+
 </head>
 
-<body class="body">
-	<!-- Simulate a smartphone / tablet look -->
-<div class="mobile-container">
+<body>
 
-<!-- Top Navigation Menu -->
-<div class="topnav">
-  <a class="active"><img src="hovedlogo.png" style="width:25px;"</a>
-  <div id="myLinks">
-		<a id="hidesignin"href="login.html">Sign in</a>
-    <a id="redeem" href="#Redeem.html">Redeem</a>
-    <a href="#contact">Contact</a>
-    <a href="#about">About</a>
-		<div id="hidesignoff">
-			<a id="logoff" href="index.html">Sign out</a>
-			<!--legg til en sign in knapp når bruker er avloget-->
+  <section id="hero">
+    <div class="container">
+      <!-- Nav Bar -->
+      <nav class="navbar navbar-expand-lg navbar-dark navbar-toggleable-md">
+        <a class="navbar-brand logo" href="index.html">Cycl</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarItems" aria-controls="navbarItems" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarItems">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-items text-center">
+              <a class="nav-link" href="index.html">HOME</a>
+            </li>
+            <li class="nav-items text-center">
+              <a class="nav-link" href="aboutUs.html">ABOUT US</a>
+            </li>
+            <li class="nav-items text-center">
+              <a class="nav-link" href="faqweb.html">FAQ</a>
+            </li>
+            <li class="nav-items text-center">
+              <a class="nav-link" href="mailto:contact.cycl@gmail.com">CONTACT</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+      <!-- Title -->
+      <div class="row hero-row">
+        <div class="col-lg-6">
+          <div class="hero-description">
+            <h1 class="font-weight-bold hero-title">Find your nearest station & recycle</h1>
+            <p class="hero-title-description">
+              Download now
+            </p>
+            <a href="https://apps.apple.com/us/app/cycl/id1595959299">
+              <button class="btn btn-outline-light" type="button"></i><img style="width: 150px; height: 50px;" src="imagesweb/appstore.png" alt=""></button>
+            </a>
+            <a href="https://play.google.com/store/apps/details?id=com.app.cycl">
+              <button class="btn btn-outline-light" type="button"></i><img style="width: 150px; height: 50px;" src="imagesweb/android.png" alt=""></button>
+            </a>
+          </div>
+        </div>
 
-		</div>
-  </div>
-  <a href="javascript:void(0);" class="icon" onclick="myFunction()">
-    <i class="fa fa-bars"></i>
+        <div class="col-lg-6">
+          <img class="hero-img" src="imagesweb/smartphonescrn.png" alt="Our Application" style="height: 550px; width: 250px;">
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- Features -->
+
+  <section id="features">
+    <div class="row">
+      <div class="features-box col-lg-4">
+        <i class=""><img src="https://img.icons8.com/color/48/000000/easy-skin-type-4.png"/></i>
+        <h3>Easy to use</h3>
+        <ul>
+          <li>Find nearby station</li>
+          <li>Scan your bottle</li>
+          <li>And leave it in the station</li>
+          <!-- 
+          <li>Drop your bottle</li>
+          -->
+        </ul>
+      </div>
+      <div class="features-box col-lg-4">
+        <i class=""><img src="https://img.icons8.com/external-vitaliy-gorbachev-lineal-color-vitaly-gorbachev/60/000000/external-sustainable-ecology-vitaliy-gorbachev-lineal-color-vitaly-gorbachev.png"/></i>
+        <h3>Sustainable</h3>
+        <p>Cycl is covering 4 of United Nations sustainable development goals.</p>
+      </div>
+      <div class="features-box col-lg-4">
+        <i class=""><img src="https://img.icons8.com/external-flatart-icons-flat-flatarticons/64/000000/external-reward-success-flatart-icons-flat-flatarticons.png"/></i>
+        <h3>Rewards</h3>
+        <p>Get points for every recycled bottle and spend on discounts and give aways.</p>
+      </div>
+    </div>
+
+
+  </section>
+
+
+  <!-- Testimonials -->
+<!-- 
+  <section id="testimonials">
+
+    <div id="testimonialCarousel" class="carousel slide" data-ride="carousel">
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <h2>
+            <span class="quotation-symbol">"</span>I've found my best companion through TinMate. They have made the process super easy. WHOOAH!!!<span class="quotation-symbol">"</span>
+          </h2>
+          <img src="https://alnahian2003.github.io/tinmate/images/couple.jpg" alt="emanuel-michel">
+          <p>Emanuel & Michel</p>
+          <em>Sydney, Australia</em>
+        </div>
+        <div class="carousel-item">
+          <h2>
+            <span class="quotation-symbol">"</span>I was sparing my time lonely, but with TinMate's help, I have found the love of my life. I think.<span class="quotation-symbol">"</span>
+          </h2>
+          <img src="https://alnahian2003.github.io/tinmate/images/lady-img.jpg" alt="diane-gudogdu">
+          <p>Diane Gudogdu</p>
+          <em>Beverly, Illinois</em>
+        </div>
+      </div>
+      <a class="carousel-control-prev" href="#testimonialCarousel" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="carousel-control-next" href="#testimonialCarousel" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
+    </div>
+
+  </section>
+-->
+  <!-- Press -->
+
+  <section id="press">
+
+    <img class="press-image" src="https://images.squarespace-cdn.com/content/v1/590ad42646c3c4b30421098e/1541678798873-HK1F6OMJAFUHWKML414Y/charge_positive.png?format=1500w" alt="charge-logo">
+    <img class="press-image" src="https://rodtvet.osloskolen.no/siteassets/bildegalleri/oslo-kommune-ny-logo.png.jpg" alt="oslokommune-logo">
+    <!--<img class="press-image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Telia_Scandinavia_Logo.svg/1200px-Telia_Scandinavia_Logo.svg.png" alt="telia-logo"> -->
+
+  </section>
+
+  <!-- Pricing 
+
+  <section id="pricing">
+    <div class="pricing-heading">
+      <h2>We Love to Make Everything Perfect</h2>
+      <p>Choose a good & affordable plan for better services.</p>
+    </div>
+    -->
+    <!-- pricing tables 
+
+    
+    <div class="container">
+      <div class="card-deck mb-3 text-center">
+        <div class="card mb-4 shadow-sm">
+          <div class="card-header">
+            <h4 class="my-0"><i class="fas fa-paper-plane pricing-section-icon"></i> Free</h4>
+          </div>
+          <div class="card-body">
+            <h1 class="card-title pricing-card-title">
+              <span class="price">$0</span><small class="text-muted">/ mo</small>
+            </h1>
+            <ul class="list-unstyled mt-3 mb-4">
+              <li>- Unlimited messaging</li>
+              <li>- 5 GB of storage</li>
+              <li>- Unlimited friends</li>
+              <li>- 5 Technical Support</li>
+            </ul>
+            <button type="button" class="btn btn-lg btn-block btn-primary">Grab It</button>
+          </div>
+        </div>
+        <div class="card mb-4 shadow-sm">
+          <div class="card-header">
+            <h4 class="my-0"><i class="fas fa-plane rotated-icon pricing-section-icon"></i> Pro </h4>
+          </div>
+          <div class="card-body">
+            <h1 class="card-title pricing-card-title">
+              <span class="price">$15</span><small class="text-muted">/ mo</small>
+            </h1>
+            <ul class="list-unstyled mt-3 mb-4">
+              <li>- Unlimited messaging</li>
+              <li>- 30 GB of storage</li>
+              <li>- Priority email support</li>
+              <li>- Unlimited Support</li>
+            </ul>
+            <button type="button" class="btn btn-lg btn-block btn-outline-success">Smash It</button>
+          </div>
+        </div>
+        <div class="card mb-4 shadow-sm">
+          <div class="card-header">
+            <h4 class="my-0"><i class="fas fa-fighter-jet rotated-icon pricing-section-icon"></i> Enterprise</h4>
+          </div>
+          <div class="card-body">
+            <h1 class="card-title pricing-card-title">
+              <span class="price">$30</span><small class="text-muted">/ mo</small>
+            </h1>
+            <ul class="list-unstyled mt-3 mb-4">
+              <li>- Unlimited Offers</li>
+              <li>- Unlimited storage</li>
+              <li>- Unlimited Registration</li>
+              <li>- Unlimited Support</li>
+            </ul>
+            <button type="button" class="btn btn-lg btn-block btn-primary">Enjoy It</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+-->
+  <!-- Call to Action -->
+
+  <section id="cta">
+
+    <h3>Turn Your Business To Plastic Bottle Free Zone</h3>
+    <p> Contact us and we will deliver a free cycl station to your business. This will result
+      more customers coming into your business to recycle bottles, or to buy your products by using coupons through the Cycl app. 
+      The best part is that you will have a signifient role of fighting plastic pollution</p>
+
+   
+    <lottie-player src="https://assets4.lottiefiles.com/packages/lf20_myy7z4ul.json" background="transparent"  speed="1"  style="width: 300px; height: 300px;" loop autoplay></lottie-player>
+       <!-- 
+    <img src="imagesweb/GRABAGE-WITH-BOY-3.JPG" background="transparent"  speed="1"  style="width: 300px; height: 300px;" loop autoplay>
+      -->
+    <p>You're always welcome</p>
+    <a class="social-buttons"  href="mailto:contact.cycl@gmail.com">
+    <button class="btn btn-success join-community-button" type="button"><i class="far fa-heart"></i> Join Now</button>
   </a>
-</div>
+
+  </section>
 
 
+  <!-- Footer -->
 
-<!-- End smartphone / tablet look -->
-</div>
+  <footer id="footer">
+    <div class="meet-the-dev">
 
-<script>
-function myFunction() {
-  var x = document.getElementById("myLinks");
-  if (x.style.display === "block") {
-    x.style.display = "none";
-  } else {
-    x.style.display = "block";
+      <a class="social-buttons" href="https://www.linkedin.com/company/77729926/admin/" target="_blank">
+        <button class="btn btn-light text-primary btn-sm" type="button"><i><img src="https://img.icons8.com/material-outlined/24/000000/linkedin--v1.png"/></i> Linkedin</button>
+      </a>
+      <a class="social-buttons" href="https://www.instagram.com/cycl.app/" target="_blank">
+        <button class="btn btn-light text-primary btn-sm" type="button"><i></i><img src="https://img.icons8.com/material-outlined/24/000000/instagram-new--v1.png"/></i> Instagram</button>
+      </a>
+      <a style="color:white ; margin-left: 150px;" href="Termsncondetions.html" target="_blank">Terms
+      </a>
+
+      <a style="color: white;margin-left: 10px;" href="privacyweb.html" target="_blank">Policy
+      </a>
+
+      <!-- 
+      <a class="social-buttons" href="mailto:a.alnahian2003@gmail.com" mail target="_blank">
+        <button class="btn btn-danger btn-sm" type="button"><i class="fas fa-envelope-square"></i></i> Linkedin</button>
+      </a>
+
+      -->
+    </div>
+    <p class="copyright-text">©Copyright 2020 Cycl</p>
+  </footer>
+
+
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+
+
+  <!-- fontawesome kit -->
+  <script src="https://kit.fontawesome.com/b286598102.js" crossorigin="anonymous"></script>
+</body>
+
+<style>
+
+/* browser default styling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* customized scrollbar for chrome desktop version only */
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: none;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb:hover {
+  background: #0b5fdd;
+  /* Old browsers */
+  background: -moz-linear-gradient(-45deg, #0b5fdd 1%, #3690f0 60%, #54a3ee 79%, #4ca3ef 100%);
+  /* FF3.6-15 */
+  background: -webkit-linear-gradient(-45deg, #0b5fdd 1%, #3690f0 60%, #54a3ee 79%, #4ca3ef 100%);
+  /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(135deg, #0b5fdd 1%, #3690f0 60%, #54a3ee 79%, #4ca3ef 100%);
+  /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#0b5fdd', endColorstr='#4ca3ef', GradientType=1);
+  /* IE6-9 fallback on horizontal gradient */
+  border: 1px solid #fff;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb {
+  background: #555;
+}
+
+/* body styling */
+body {
+  font-family: "Montserrat" !important;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  overflow-x: hidden;
+}
+
+img {
+  pointer-events: none;
+}
+
+a, a:hover, a:visited, a:focus {
+  text-decoration: none !important;
+}
+
+/* hero section styling */
+#hero {
+  color: rgb(255, 255, 255);
+  text-shadow: 1px 2px 8px rgba(0, 0, 0, .3);
+  background: #52b459;
+  
+  /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#0b5fdd', endColorstr='#4ca3ef', GradientType=1);
+  /* IE6-9 fallback on horizontal gradient */
+  box-shadow: 0px 5px 20px rgba(50, 50, 50, .5);
+}
+
+
+/* navbar styling */
+.navbar {}
+
+/* logo/brandname styling */
+.navbar-brand {
+  font-family: "Pacifico" !important;
+  font-size: 2.5em !important;
+}
+
+.nav-items {
+  padding: 0 5px;
+}
+
+.nav-link {
+  color: rgba(255, 255, 255, 0.8) !important;
+}
+
+.nav-link:hover {
+  color: rgb(255, 255, 255) !important;
+}
+
+/* hero row styling */
+.hero-row {
+  margin-top: 10%;
+}
+
+/* hero description styling */
+.hero-description {
+  margin-top: 5%;
+  margin-left: 3%;
+}
+
+/* hero button styling */
+.get-started-button, .join-community-button {
+  margin-right: 5px;
+}
+
+/* hero image styling */
+.hero-img {
+  margin-top: -10%;
+  padding-bottom: 10%;
+  margin-left: 40%;
+  transform: rotate(20deg);
+}
+
+/* hero title styling */
+.hero-title {
+  color: #fff;
+  font-family: "Spartan";
+  text-shadow: 1px 2px 8px rgba(0, 0, 0, .3);
+  line-height: 1.5;
+}
+
+/* features section styling */
+#features {
+  padding: 8% 20%;
+}
+
+.features-box {
+  text-align: center;
+}
+
+h3 {
+  font-family: "Montserrat" !important;
+  font-weight: 700 !important;
+}
+
+.features-icons {
+  font-size: 55px;
+  background: -webkit-linear-gradient(-45deg, #0b5fdd 1%, #3690f0 80%, #54a3ee 79%, #4ca3ef 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 10px;
+}
+
+.features-icons:hover {
+  transform: scale(1.3);
+  transition: 0.3s;
+}
+
+
+/* testimonial section styling */
+#testimonials {
+  padding: 10% 10%;
+  text-align: center;
+  background-color: #0b5fdd;
+  color: #fff;
+  text-shadow: 1px 2px 8px rgba(0, 0, 0, .3);
+  margin-bottom: 5%;
+  box-shadow: 0px 5px 20px rgba(50, 50, 50, .5);
+}
+
+#testimonials h2 {
+  font-weight: 700 !important;
+  margin-bottom: 3%;
+}
+
+.quotation-symbol {
+  padding: 0 2%;
+  font-family: "Spartan";
+}
+
+#testimonials img {
+  border-radius: 50%;
+}
+
+#testimonials p {
+  margin-top: 5px;
+  margin-bottom: -5px;
+}
+
+.carousel-inner {
+  margin-top: 5%;
+  height: 350px;
+}
+
+em {
+  font-size: 16px;
+  margin-bottom: 10%;
+}
+
+/* press section styling */
+#press {
+  text-align: center;
+  margin-bottom: 5%;
+  padding-top: 4%;
+  padding-bottom: 4%;
+}
+
+.press-image {
+  width: 15%;
+  padding: 0 2% 0 2%;
+}
+
+/* pricing section styling */
+#pricing {
+  /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#0b5fdd+1,3690f0+60,54a3ee+79,4ca3ef+100 */
+  background: #0b5fdd;
+  /* Old browsers */
+  background: -moz-linear-gradient(-45deg, #0b5fdd 1%, #3690f0 60%, #54a3ee 79%, #4ca3ef 100%);
+  /* FF3.6-15 */
+  background: -webkit-linear-gradient(-45deg, #0b5fdd 1%, #3690f0 60%, #54a3ee 79%, #4ca3ef 100%);
+  /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(135deg, #0b5fdd 1%, #3690f0 60%, #54a3ee 79%, #4ca3ef 100%);
+  /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#0b5fdd', endColorstr='#4ca3ef', GradientType=1);
+  /* IE6-9 fallback on horizontal gradient */
+  box-shadow: 0px 5px 20px rgba(50, 50, 50, .5);
+  text-align: center;
+  padding: 10% 15%;
+  font-family: "Montserrat";
+}
+
+.pricing-heading {
+  color: #fff;
+  margin-bottom: 10%;
+  text-shadow: 1px 2px 8px rgba(0, 0, 0, .3);
+}
+
+.pricing-heading h2 {
+  font-weight: 700 !important;
+  text-shadow: 1px 2px 8px rgba(0, 0, 0, .3);
+}
+
+.card-header {
+  font-weight: 700 !important;
+}
+
+.pricing-section-icon {
+  background: -webkit-linear-gradient(-45deg, #0b5fdd 1%, #3690f0 80%, #54a3ee 79%, #4ca3ef 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.rotated-icon {
+  transform: rotate(-45deg);
+}
+
+.price {
+  font-weight: 700 !important;
+  color: #3690f0;
+}
+
+h4 {
+  font-weight: 700 !important;
+}
+
+/* call to action section styling */
+#cta {
+  text-align: center;
+  padding: 10% 10%;
+  font-family: "Montserrat"
+}
+
+#cta p {
+  margin-bottom: 3%;
+}
+
+/* footer section styling */
+#footer {
+  background: #52b459;
+  /* Old browsers */
+  
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#0b5fdd', endColorstr='#4ca3ef', GradientType=1);
+  /* IE6-9 fallback on horizontal gradient */
+  color: #fff;
+  text-align: center;
+  padding: 2% 0%;
+}
+
+.meet-the-dev {
+  margin-bottom: 10px;
+  text-shadow: 1px 2px 8px rgba(0, 0, 0, .3);
+}
+
+.copyright-text {
+  font-size: 14px;
+}
+
+/* ------------for mobile------------ */
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+
+  /* global rules */
+  h1 {
+    font-size: 1.2rem !important;
+  }
+
+  h2, h3, h4 {
+    font-size: 1rem !important;
+  }
+
+  p {
+    font-size: 16px !important;
+  }
+
+  button {
+    padding: 6px !important;
+  }
+
+  /* hero section rules   */
+  #hero {
+    text-align: center;
+  }
+
+  .hero-row {
+    text-align: center;
+    padding-bottom: 20%;
+  }
+
+  .hero-description {
+    margin-top: 0;
+    padding: 20% 0%;
+  }
+
+  .hero-img {
+    display: none;
+  }
+
+  /* features section rules */
+  #features {
+    padding: 10% 10%;
+  }
+
+  /* testimonials section rules */
+  #testimonials {
+    padding: 10% 5%;
+  }
+
+  .carousel-item img {
+    width: 20%;
+  }
+
+  .carousel-item {
+    padding: 5% 5%;
+  }
+
+  .carousel-item p {
+    font-size: 16px !important;
+  }
+
+  /* press section styling */
+  .press-image {
+    width: 20%;
+    padding: 0 2%;
+  }
+
+  /* pricing section styling */
+  #pricing {
+    padding: 10% 10%;
+  }
+
+  /* footer section styling */
+  #footer {
+    padding: 5% 2.5% 3% 2.5%;
+  }
+
+  .meet-the-dev {
+    margin-bottom: 5px;
+  }
+
+  .social-buttons button {
+    padding: 0 5px;
+    margin: 3px 0;
+  }
+
+  /* cta section rules */
+  #cta {
+    margin: 10% 0;
   }
 }
-</script>
 
+/* ------------for tablet------------ */
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (max-width: 990px) {
 
-<div id="map"></div>
+  /* hero section rules */
+  #hero {
+    text-align: center;
+  }
 
-	 <script>
-		 // Note: This example requires that you consent to location sharing when
-		 // prompted by your browser. If you see the error "The Geolocation service
-		 // failed.", it means you probably did not give permission for the browser to
-		 // locate you.
-		 var MyLatning = {lat: -25.363, lng: 131.044};
-		 var cyclmarker= {lat: 59.919931, lng: 10.767673};
-		 var map, infoWindow;
+  .hero-title {
+    margin-left: 0px;
+    padding: 0 5%;
+  }
 
-		 var visited= 0;
-		 var d= new Date();
-		 var h= d.getHours();
+  .hero-row {
+    margin-top: 0;
+  }
 
+  .hero-description {
+    margin-top: 0;
+    padding: 20% 5%;
+  }
 
-		 function place(){
+  .hero-img {
+    display: none;
+  }
 
-		   var plce = firebase.database().ref("place/").child("butik1");
-		   plce.transaction(function(visited) {
-		      return visited + 1;
-		   });
-		 }
+  /* testimonials section rules */
+  #testimonials {
+    padding: 5% 10%;
+  }
 
-		 function getTime(){
+  .carousel-inner {
+    margin-top: 5%;
+    height: 300px;
+  }
 
-		   var time_ = firebase.database().ref("place/").child("butik1").child("time");
-		   time_.transaction(function(h) {
-		      return h;
-		   });
-		 }
+  .carousel-item h2 {
+    margin-top: 5%;
+    font-size: 1.2rem !important;
+  }
 
-		 function initMap() {
+  .carousel-item img {
+    width: 15%;
+  }
 
-			 map = new google.maps.Map(document.getElementById('map'), {
-				 center: {lat: -34.397, lng: 150.644},
-				 zoom: 17
+  /* pricing section rules */
+  #pricing {
+    padding: 10% 5%;
+  }
 
-			 });
+  .list-unstyled li {
+    font-size: 16px !important;
+  }
+}
 
-			 	//when the user click on <span> (x) close the Modal
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {}
 
-			 infoWindow = new google.maps.InfoWindow;
+/* ------------for desktop------------ */
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
 
-			 var modal = document.getElementById("myModal");
+  /* Extra large devices (large laptops and desktops, 1200px and up) */
+  @media only screen and (min-width: 1200px) {}
 
-			 // Get the <span> element that closes the modal
-			 var span = document.getElementsByClassName("close")[0];
+  /*--------------------------------------------------------------
+|                                                              |
+|     Media Queries & Responsive Styling Ends Right Here      |
+|                                                              |
+---------------------------------------------------------------*/
 
-			 var marke2 = new google.maps.Marker({
+</style>
 
-				 position: MyLatning,
-				 icon:'Images/40.png',
-				 map,
-				 title: ""
-			 });
-
-			 var marker = new google.maps.Marker({
-
-				 position: cyclmarker,
-				 icon:'Images/40.png',
-				 map,
-				 title: ""
-			 });
-
-			 //on place make it clickable only if user is on the place
-			 marker.addListener("click", () => {
-				 {
-					 modal.style.display = "block";
-					 place()
-					 getTime()
-					 getLocation();
-
-			 }
-
-
-
-			 // When the user clicks on <span> (x), close the modal
-			 span.onclick = function() {
-			   modal.style.display = "none";
-			 }
-
-			 // When the user clicks anywhere outside of the modal, close it
-			 window.onclick = function(event) {
-			   if (event.target == modal) {
-			     modal.style.display = "none";
-			   }
-			 }
-				//when the user click on <span> (x) close the Modal
-			 });
-
-			 // Try HTML5 geolocation.
-			 if (navigator.geolocation) {
-
-				 var watchID=navigator.geolocation.watchPosition(function(position) {
-					 //gjør denne om til en marker
-					 var currentpos = {
-						 timeout: Infinity,
-						 maximumAge:0,
-						 enableHighAccuracy: true,
-						 lat: position.coords.latitude,
-						 lng: position.coords.longitude,
-						 icon:"Images/40.png"
-
-					 };
-					 // TODO: fix this thing under, you are close in sha Allah
-
-					 infoWindow.setContent('your here.');
-					 infoWindow.open(map);
-					 var latLngA = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
-
-
-					 map.setCenter(currentpos);
-					 infoWindow.setPosition(currentpos);
-
-				 }, function() {
-					 handleLocationError(true, infoWindow, map.getCenter());
-				 });
-
-			 } else {
-				 // Browser doesn't support Geolocation
-				 handleLocationError(false, infoWindow, map.getCenter());
-			 }
-		 }
-
-		 function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-			 infoWindow.setPosition(pos);
-			 infoWindow.setContent(browserHasGeolocation ?
-														 'Error: The Geolocation service failed.' :
-														 'Error: Your browser doesn\'t support geolocation.');
-			 infoWindow.open(map);
-
-		 }
-		 //responderer seint muligens pga at den trenger permission for å vise locasjon
-
-		 function getLocation() {
-		   navigator.geolocation.getCurrentPosition(
-		             function(position) {
-									   var depositButton=document.getElementById("scannbtn");
-		                 var latLngA = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
-		                 var latLngB = new google.maps.LatLng(59.919931,10.767673);
-		                 var distance = google.maps.geometry.spherical.computeDistanceBetween(latLngA, latLngB);
-		                 if (distance > 1111400) {
-											 // TODO: hide the DepositPoint if distance is far and show only the alert
-											 alert("its far");
-											 window.location.href=("resetpass.html")
-
-		                 }
-		             },
-		             function() {
-		                console.log(distance);
-		             }
-		     );
-		 }
-
-		 cordova.plugins.locationAccuracy.request(successCallback, errorCallback, accuracy);
-
-
-	 </script>
-
-
-	 </head>
-	 <body>
-	 <!-- Trigger/Open The Modal -->
-	<!-- <button id="myBtn">Open Modal</button>-->
-
-	 <!-- The Modal -->
-	 <div id="myModal" class="modal">
-
-	   <!-- Modal content -->
-	   <div class="modal-content">
-	     <div class="modal-header">
-	       <span class="close">&times;</span>
-	       <h2 style="color: #52b459; position:fixed;left:40%;top:73%;">DepositPoint 22</h2><img src="Images/Box.png" style="height:185px; width: 145px;">
-	     </div>
-	     <div class="modal-body">
-	       <p style="position:fixed;left:40%; top:85%">Deli De Luca</p>
-	       <p style="position:fixed;left:40%;top:88%">Karl Johansgata</p>
-	     </div>
-	     <div class="modal-footer">
-
-				 <button class="scannerbtn"id="scannbtn">Scan your bottle</button>
-
-	     </div>
-	   </div>
-
-	 </div>
-
-	 <script>
-	 // Get the modal
-	 var modal = document.getElementById("myModal");
-
-	 // Get the button that opens the modal
-	 var btn = document.getElementById("myBtn");
-
-	 // Get the <span> element that closes the modal
-	 var span = document.getElementsByClassName("close")[0];
-
-
-
-	 // When the user clicks on <span> (x), close the modal
-	 span.onclick = function() {
-	   modal.style.display = "none";
-	 }
-
-	 // When the user clicks anywhere outside of the modal, close it
-	 window.onclick = function(event) {
-	   if (event.target == modal) {
-	     modal.style.display = "none";
-	   }
-	 }
-	 </script>
-
-	 <script src="index.js"></script>
-
-</body>
-
-</body>
 </html>

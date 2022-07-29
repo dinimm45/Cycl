@@ -1,34 +1,84 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <script src="https://www.gstatic.com/firebasejs/7.22.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/7.22.0/firebase-analytics.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-database.js"></script>
-     <script src="https://www.gstatic.com/firebasejs/live/3.1/firebase.js"></script>
-  <title>Image test using</title>
+  
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.3.1/dist/tf.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@0.8/dist/teachablemachine-image.min.js"></script>
+  <title>Image clasify using</title>
   <link rel="stylesheet" href="styles.css">
   <!--<button type="button" onclick="init()">Start</button>-->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
+  
 
-    <div class="container">
-        <ul class="progressbar">
-          <li class="activeprgrs">Scan</li>
-          <li class="activeprgrs">Return</li>
-          <li>Recycled</li>
-        </ul>
-      </div>
-    
-    <div style="border: 2px solid #52b459; width: 270px;
-    height: 205px; position: relative; left: 15%;" id="webcam-container" ></div>
-    <div style="display: none;" id="label-container"></div>
-    <h3  id="bottleshow"></h3>
+ <!DOCTYPE html>
+<html>
+<head>
+  <title>Image detections</title>
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.3.1/dist/tf.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@0.8/dist/teachablemachine-image.min.js"></script>
+  <!--<button type="button" onclick="init()">Start</button>-->
+  <link rel="stylesheet" href="styles.css">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body class="body2">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-    <img src="Images/holdingphn.png" style="width: 50px; position: relative; left: 35%; margin-top: 10px;" alt="">
-    <img src="Images/recyclehand.png" style="width: 50px; position: relative; left: 35%; margin-top: 10px;"  alt="">
+  <div style="display: flex;flex: 1;align-items: center;justify-content: center;" id="webcam-container" class="completedclass">
 
-    <div id="overlaystation"> 
+    <div class="container" style="position: absolute; bottom: 50%; z-index: 100; top: 20px;">
+      <ul class="progressbar">
+        <li class="activeprgrs">Scan</li>
+        <li class="activeprgrs"> Return</li>
+        <li>Recycled</li>
+      </ul>
+
+  </div>
+  
+
+  
+
+  <div style="display: flex; flex-direction: column; position: absolute; flex: 1; align-items: center; justify-content: center; top:50%; z-index: 100;">
+    <div id="loading" class="lds-ellipsis" style="top: 40%; left: 35%;position: absolute;"><div></div><div></div><div></div><div></div></div>
+    <h1 id="text1" style="color:#52b459;"> Loading... </h1>
+    <p id="text3" style="color:#52b459;"> * Follow the instructions to recycle corectly </hp>
+      <br>
+      <br>
+      <br>
+      <br>
+  </div>
+  
+  <div style="z-index: 100; position: absolute; left: 5%; top: 20px">
+      <div style="display: none;" id="label-container"></div>
+      <h3  style="display: none;" id="bottleshow"></h3>
+  </div>
+
+  <div id="text2" style="display: none; flex-direction: column; flex: 1; align-items: center; justify-content: center; position: absolute; z-index: 100; width: 100%; top: 60%;">
+    <p style="color:white; background-color: #52b459;border-radius: 15px; text-align: center;" id="info"> Hold the bottle as demonstraded and drop it</p>
+    <button id="backbtn" style="background-color: #52b459; width: 180px; cursor: pointer; height: 40px; border-radius: 25px; font-size: 20px; border: none; 
+    z-index: 1; color: white; left: 25%; position: absolute;" id="homebtn">Cancel</button> 
+  </div>
+  
+       
+  <div class="overlaycameraimg" style="display: flex;flex: 1;align-items: center;justify-content: center; width: 100%;height: 100%;">
+    <!-- <img style="flex:1;opacity: 0.4;" src="Images/holdcrrct.png" alt=""> -->
+    <!-- <div class="scan-animation">
+      <span class="scan-animation__angle scan-animation__angle--top"></span>
+      <span class="scan-animation__angle scan-animation__angle--bottom"></span>
+    </div> -->
+    <div id="DropColor" style=" border: 8px solid red;
+    width: 100%;
+    height: 100%;
+    margin: 10px auto;display: block;">
+
+  </div>
+  </div>
+</div>
+
+   
+
+    <!-- <div id="overlaystation"> 
         <div class="container">
           <ul class="progressbar">
             <li class="activeprgrs">Scan</li>
@@ -48,238 +98,102 @@
           color: white;" id="homebtn">Go back</button> 
         </div>
         
-      </div>
-      <div id="loading" class="lds-ellipsis" style="display: none;"><div></div><div></div><div></div><div></div></div>
-  
-      <div class="loadingsoundclass">
-      <h1 id="text1" style="color:#52b459;"> Loading... </h1>
-      <p id="text3" style="color:#52b459;"> * You cant speak on the phone while recycling </hp>
-        <br>
-        <br>
-        <br>
-        <br>
-        <h1 id="text2" style="color:#52b459; display: none;"> Station ready</h1>
-        <button id="backbtn" style="  background-color: green; width: 180px;
-        height: 40px;
-        border-radius: 25px;
-        font-size: 20px; border: none;
-        color: white;" id="homebtn">Cancel</button>   
-      </div>
+      </div> -->
 
+<script src="js/ImgDetect.js"></script>
 
-
-
-    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.3.1/dist/tf.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@0.8/dist/teachablemachine-image.min.js"></script>
-<script type="text/javascript">
-let video=document.getElementById("webcam-container");
-video.setAttribute('autoplay', '');
-video.setAttribute('muted', '');
-video.setAttribute('playsinline', '');
-
-    // More API functions here:
-    // https://github.com/googlecreativelab/teachablemachine-community/tree/master/libraries/image
-
-    // the link to your model provided by Teachable Machine export panel
-    const URL = "https://teachablemachine.withgoogle.com/models/V2edeDA1u/";
-
-    var language = window.navigator.userLanguage || window.navigator.language;
-//alert(language); //works IE/SAFARI/CHROME/FF
-
-screen.orientation.onchange = function (){
-    // logs 'portrait' or 'landscape'
-    console.log(screen.orientation.type.match(/\w+/)[0]);
-};
-
-
-    var backbtn=document.getElementById("backbtn");
-
-    backbtn.addEventListener("click",function(){
-      window.location.href="home.html"
-    });
-
-    function load(){
-      document.getElementById("text2").style.display="block";
-    }
-    function hidetxt(){
-      document.getElementById("text1").style.display="none";
-      document.getElementById("text3").style.display="none";
-      document.getElementById("loading").style.display="none";
-
-    }
-
-    function overlay(){
-      document.getElementById("overlaystation").style.display="block";
-    }
-
-  function homebtn(){
-    document.getElementById("homebtn").addEventListener("click",function(){
-      window.location.href="home.html"
-    })
-  };
-  homebtn();
-
-   // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-   const firebaseConfig = {
-    apiKey: "AIzaSyDTR4_vw3x8pTxIAiS8Y0-3T4APCwotpyg",
-    authDomain: "cycl-77b6c.firebaseapp.com",
-    databaseURL: "https://cycl-77b6c.firebaseio.com",
-    projectId: "cycl-77b6c",
-    storageBucket: "cycl-77b6c.appspot.com",
-    messagingSenderId: "139900263133",
-    appId: "1:139900263133:web:9c72ae1fd6569fe6a1d934",
-    measurementId: "G-VPV104NQQW"
-  };
-firebase.initializeApp(firebaseConfig);
-
-var amount=0
-
-function amountcounter(){
-var uid=firebase.auth().currentUser.uid;
-
-var amountcc = firebase.database().ref().child(uid).child("users/").child("amount");
-amountcc.transaction(function(amount) {
- return amount + 1;
-});
+<style>
+  .overlaycameraimg {
+  position:absolute;
+  top:0;
+  z-index:25;
+  text-align:center;
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  background: url("Images/holdcrrct.png");
+  z-index: 10;
+  opacity: 0.5;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
-    let model, webcam, labelContainer, maxPredictions;
+img {
+  display:inline-block;
+}
 
-    let isIos = false; 
-    // fix when running demo in ios, video will be frozen;
-    if (window.navigator.userAgent.indexOf('iPhone') > -1 || window.navigator.userAgent.indexOf('iPad') > -1) {
-      isIos = true;
-    }
-
-    // Load the image model and setup the webcam
-    async function init() {
-        const modelURL = URL + "model.json";
-        const metadataURL = URL + "metadata.json";
-
-        // load the model and metadata
-        // Refer to tmImage.loadFromFiles() in the API to support files from a file picker
-        // or files from your local hard drive
-        // Note: the pose library adds "tmImage" object to your window (window.tmImage)
-        model = await tmImage.load(modelURL, metadataURL);
-        maxPredictions = model.getTotalClasses();
-
-        // Convenience function to setup a webcam
-        const flip = false; // whether to flip the webcam
-        const width = 270;
-        const height = 200;
-        webcam = new tmImage.Webcam(width, height); // width, height, flip
-        await webcam.setup( { facingMode: "environment" } ); // request access to the webcam
-
-        if (isIos) {
-            document.getElementById('webcam-container').appendChild(webcam.webcam); // webcam object needs to be added in any case to make this work on iOS
-            // grab video-object in any way you want and set the attributes
-            const webCamVideo = document.getElementsByTagName('video')[0];
-            webCamVideo.setAttribute("playsinline", true); // written with "setAttribute" bc. iOS buggs otherwise
-            webCamVideo.muted = "true";
-            webCamVideo.style.width = width + 'px';
-            webCamVideo.style.height = height + 'px';
-        } else {
-            document.getElementById("webcam-container").appendChild(webcam.canvas);
-        }
-
-        try {
-            // append elements to the DOM
-            // if (isIos) {
-            //     document.getElementById("webcam-container").appendChild(webcam.webcam);
-            // }
-            // else{
-            //     document.getElementById("webcam-container").appendChild(webcam.canvas);
-            // }
-            labelContainer = document.getElementById("label-container");
-            for (let i = 0; i < maxPredictions; i++) { // and class labels
-                 labelContainer.appendChild(document.createElement("div"));
-            }
-            await webcam.play() ? console.log("working") : console.log("not working");
-            window.requestAnimationFrame(loop);
-        }
-        catch(e) {
-            console.log('Catch an error: ', e)
-        }
-    } 
-
-    //executes the init function
-    function getAccel(){
-    DeviceMotionEvent.requestPermission().then(response => {
-        if (response == 'granted') {
-          init()
-       // Add a listener to get smartphone orientation 
-           // in the alpha-beta-gamma axes (units in degrees)
-            window.addEventListener('deviceorientation',(event) => {
-                // Expose each orientation angle in a more readable way
-                rotation_degrees = event.alpha;
-                frontToBack_degrees = event.beta;
-                leftToRight_degrees = event.gamma;
-                
-                // Update velocity according to how tilted the phone is
-                // Since phones are narrower than they are long, double the increase to the x velocity
-                vx = vx + leftToRight_degrees * updateRate*2; 
-                vy = vy + frontToBack_degrees * updateRate;
-                
-
-                console.log(frontToBack_degrees)
-                if (frontToBack_degrees < 5){
-                    alert ('position correct!')
-                }
-                // Update position and clip it to bounds
-                
-            });
-        }
-    });
+.scan-animation {
+    position: absolute;
+    transform: translate(-50%,-50%);
+    width: 320px;
+    height: 320px;
+    z-index: 1;
+    left: 100%;
+    top:40%;
+   
+  }
   
-    getAccel()
+  .scan-animation__angle:before,
+  .scan-animation__angle:after {
+    content: "";
+    position: absolute;
 
-    async function loop() {
-        webcam.update(); // update the webcam frame
-        await predict();
-        window.requestAnimationFrame(loop);
-    }
+    width: 30px;
+    height: 30px;
+    border-style: solid;
+    border-color: #52b459;
+    border-width: 0px;
+    z-index: 1;
+ 
+  }
+  
+  .scan-animation__angle:before {
+    border-left-width: 6px;
+    left: 0;
+    
+  }
+  
+  .scan-animation__angle:after {
+    border-right-width: 6px;
+    right: 0;
 
-    // run the webcam image through the image model
-    async function predict() {
-        // predict can take in an image, video or canvas html element
-        // const prediction;
-        // if (isIos) {
-        //     prediction = await model.predict(webcam.webcam);
-        // } else {
-        //     prediction = await model.predict(webcam.canvas);
-        // }
-        const prediction = await model.predict(webcam.canvas);
-        for (let i = 0; i < maxPredictions; i++) {
-            const classPrediction =
-                prediction[i].className + ": " + prediction[i].probability.toFixed(2);
-            labelContainer.childNodes[i].innerHTML = classPrediction;
-            console.log(classPrediction);
 
-            var Imagedetect=document.getElementById("label-container");
-                document.getElementById("bottleshow").innerHTML=classPrediction;
-                hidetxt()
-                load()
+  }
+  
+  .scan-animation__angle--top:before,
+  .scan-animation__angle--top:after {
+    top: 0;
+    border-top-width: 6px;
 
-                switch (classPrediction) {
-                   case 'drop: 0.90':
-                   case 'drop: 0.91':
-                   case 'drop: 0.92':
-                   case 'drop: 0.93':
-                   case 'drop: 0.94':
-                   case 'drop: 0.95':
-                   case 'drop: 0.96':
-                   case 'drop: 0.97':
-                   case 'drop: 0.98':
-                   case 'drop: 0.99':
-                   case 'drop: 1.00':
-                     amountcounter();
-                  overlay();
-             
-                    }
-        }
-    }
-</script>
 
+  }
+  
+  .scan-animation__angle--bottom:before,
+  .scan-animation__angle--bottom:after {
+    bottom: 0;
+    border-bottom-width: 6px;
+  }
+  
+  .scan-animation__angle--top:before {
+    border-top-left-radius: 50px;
+  }
+  
+  .scan-animation__angle--top:after {
+    border-top-right-radius: 50px;
+  }
+  
+  .scan-animation__angle--bottom:before {
+    border-bottom-left-radius: 50px;
+  }
+  
+  .scan-animation__angle--bottom:after {
+    border-bottom-right-radius: 50px;
+  }
+</style>
 
 </body>
 </html>

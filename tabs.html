@@ -1,0 +1,188 @@
+<html>
+    <head>
+		<meta charset="utf-8">
+		<title>Locate the user</title>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="theme-color" content="#222" />
+		<meta name="description" content="Cycl">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="apple-mobile-web-app-title" content="Home">
+		<link rel="apple-touch-icon" href="/icons/icon-152x152.png">
+		<meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+		<script src="https://www.gstatic.com/firebasejs/7.22.0/firebase-app.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/7.22.0/firebase-analytics.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-database.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/live/3.1/firebase.js"></script>
+		<script src="https://unpkg.com/@turf/turf@6/turf.min.js"></script>
+		<link href="https://api.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.css" rel="stylesheet">
+		<script src="https://api.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.js"></script>
+		<!-- <link href="styles.css" rel="stylesheet"> -->
+		<meta name="theme-color" content="white" />
+      <!--Import Google Icon Font-->
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <!--Import materialize.css-->
+      <link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css"  media="screen,projection"/>
+
+      <!--Let browser know website is optimized for mobile-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	  
+	  <style>
+	  
+  body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+  }
+
+  main {
+    flex: 1 0 auto;
+  }	  
+
+#frow {
+  
+  margin-top:-10px!important;
+  
+}
+
+.tabs .indicator {
+  height: 5px;
+  background-color: #fff;
+
+}  
+
+#map{
+	width: 100%;
+	height: 100%;
+	z-index: 0;
+}
+	  </style>
+	  
+    </head>
+	
+
+	
+	<main>
+	 <div class="container">
+  <div class="row" style="margin-top:20px;">
+	
+    <div id="test2" class="col s12">
+ <div class="card blue-grey darken-1">
+            <div class="card-content white-text">
+              <span class="card-title">Card Title</span>
+              <p>I am a very simple card. I am good at containing small bits of information.
+              I am convenient because I require little markup to use effectively.</p>
+            </div>
+            <div class="card-action">
+              <a href="#">This is a link</a>
+              <a href="#">This is a link</a>
+            </div>
+          </div>	
+	</div>
+	
+    <div id="test3" class="col s12">
+		
+		<div id="map"></div>
+
+		<!-- This is overlay part -->
+		<div class="alert" id="alertdiv">
+			<span class="closebtnAlert" id="closeAlert">&times;</span>
+			<strong>Too far from the current station!</strong> Please come nearby.
+		</div>
+	
+		<div class="alert" id="fullbagAlert">
+			<span class="closebtnAlert" id="closeFullbagAlert">&times;</span>
+			<strong>This station is full</strong> Please contact employee or use another station.
+		</div>
+	
+		<!--station overlay-->
+		<div id="myModal" class="modal">
+			<div class="modal-content">
+				<div class="returnstationcontent">
+					<span class="close">&times;</span>
+						<div class="itemstation" style="flex-direction: row; top: 80%;">
+							<h2 id="returnstation" style="color: #52b459; text-align: center;">Station 1002</h2>
+						</div>
+	
+						<div style="display: flex; flex-direction: row; justify-content: center;" id="applyModalWindowResize">
+	
+						<img src="Images/stationcycl.png" style="width:115px; height:170px;">
+						
+						<div class="itemstation" style="display: flex;flex-direction: column; width: 40%;">
+						
+						<div class="itemstation">
+							<div class="itemsicons" style="display: flex; max-width: 110px; margin-right: 5px; 
+					position: relative;left: 35%;align-items: center;"><img src="Images/store.png" style="width:29px; height:39px;">
+								<p id="place" style="color: black; padding-left: 20px;">Deli De Luca</p>
+							</div>
+						</div>
+	
+						<div class="itemstation">
+							<div class="itemsicons" style=" display: flex; max-width: 110px; margin-right: 5px; 
+					position: relative;left: 35%;align-items: center;"><img src="Images/placemark.png" style="width:29px; height:39px;">
+								<p id="adress" style="color: black; padding-left: 20px;">Karl Johansgata</p>
+							</div>
+						</div>
+	
+						<div class="itemstation">
+							<div class="itemsicons" style=" display: flex; max-width: 120px; margin-right: 5px; 
+					position: relative;left: 35%;align-items: center;"><img src="Images/recyclebin.png" style="width:29px; height:39px;">
+								<p id="bagQauntity" style="color: black; padding-left: 20px;">100%</p>
+							</div>
+						</div>
+	
+						</div>
+	
+					</div>
+	
+					<div class="itemstation" style="display: flex;justify-content: center;padding: 15px;"><button class="scannerbtn" id="scannbtn">Recycle</button></div>
+				</div>
+	
+			</div>
+	
+			
+		</div>
+	
+	</div>
+	
+    <div id="test4" class="col s12">
+  <div class="card">
+    <div class="card-image waves-effect waves-block waves-light">
+      <img class="activator" src="http://materializecss.com/images/sample-1.jpg">
+    </div>
+    <div class="card-content">
+      <span class="card-title activator grey-text text-darken-4">Card Title<i class="material-icons right">more_vert</i></span>
+      <p><a href="#">This is a link</a></p>
+    </div>
+    <div class="card-reveal">
+      <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
+      <p>Here is some more information about this product that is only revealed once clicked on.</p>
+    </div>
+  </div>	
+	</div>
+	
+  </div>	 
+	 </div>
+	</main>
+	
+	        <footer style="background-color: #52b459; z-index: 1;" class="page-footer">
+            <div class="row" id="frow" style="margin-bottom:0px;">
+    <div class="col s12" style="padding-left:0px!important;padding-right:0px!important;">
+      <ul class="tabs tabs-fixed-width transparent white-text">
+        <li class="tab col s3"><a href="#test2" class="white-text"><i class="material-icons">redeem</i></a></li>
+        <li class="tab col s3"><a href="#test3" class="white-text"><i class="material-icons">home</i></a></li>
+        <li class="tab col s3"><a href="#test4" class="white-text"><i class="material-icons">menu</i></a></li>
+      </ul>
+    </div>
+            </div>
+
+        </footer>
+
+    <body>
+      <!--Import jQuery before materialize.js-->
+	  <script src="js/home.js"></script>
+      <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+    </body>
+  </html>

@@ -1,7 +1,10 @@
-<!DOCUMENT html>
 <html>
 <head>
-<title>cycl login</title>
+<title>cycl member</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name='viewport'
+     content='width=device-width, initial-scale=1.0, maximum-scale=1.0,
+     user-scalable=0' >
 <script src="https://www.gstatic.com/firebasejs/7.22.0/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/7.22.0/firebase-analytics.js"></script>
 <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-database.js"></script>
@@ -9,22 +12,21 @@
  <link rel="stylesheet" href="styles.css">
 </head>
 <body class="body">
-
-<br></br>
-<img class="logo" src="Images/hovedlogo.png">
-
-
-<img style="width:25px; height:20px; position:fixed;left:27%;top:30%"src="Images/email.png">
-<input class="inputemail" id="email" placeholder="Email" type="text" width="200px"></input>
-<br></br>
-<br></br>
-<button class="loginbtn" style="width:200px; height: 30px; background-color:; color:white"id="resetpassword">Reset password</button>
-
+  <div class="form" onsubmit="return false;">
+  <div class="login-page">
+        <form class="login-form">
+  <input   id="emailreset" placeholder="Email" type="text" >
+  <button id="resetbtn">Reset password</button>
+          <p style="color: #000000;" class="message">Already a member ? <a href="login.html">Sign in</a></p>  
+        </form>
+      </div>
+     
+    </div>
 
 
 
 <!--Med koden under vil den koble seg til javascript filen firebaseauth.js.
 alt jeg skriver der vil kunne samkjøres med html elementene som er her.-->
-  <script src="login.js"></script>
+  <script src="js/resetpass.js"></script>
 </body>
 <html>
