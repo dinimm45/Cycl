@@ -27,33 +27,49 @@
 <body class="body">
 
 	<div class="phone">
-		<img
-		  src="https://images.unsplash.com/photo-1610652492500-ded49ceeb378?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80"
-		  alt="home"
+		<div
 		  class="content show"
-		/>
+	>
+	<iframe style="width: 100%; height: 100%; z-index: 1;" src="Redeem.html" name="targetframe" allowTransparency="true" scrolling="true" frameborder="0" >
+	</iframe></div>
 		
 
-		<img
-		  src="https://images.unsplash.com/photo-1611038916975-f6b3ded00212?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=554&q=80"
-		  alt="blog"
-		  class="content"
-		/>
-		<div class="content shows">
-			<div id="map"></div>
-		</div>
+		<div
+		  class="content" style="width: 100%; height: 100%;"
+		>
+		
+		<iframe style="width: 100%; height: 100%; pointer-events: unset!important;" src="start.html" name="targetframe" allowTransparency="true" scrolling="true" frameborder="0" >
+		</iframe>
+	
+	</div>
+
+		<div class="phone">
+			<div
+			  class="content shows"
+		>
+		
+		<iframe style="width: 100%; height: 100%;" src="menu.html" name="targetframe" allowTransparency="true" scrolling="true" frameborder="0" >
+		</iframe>
+	
+	
+	
+	</div>
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 		<nav>
 		  <ul>
 			<li>
 			  <i class="fas fa-box"></i>
+			  <i class="material-icons nav__icon">redeem</i>
 			  <p>Redeem</p>
 			</li>
 			<li>
 			  <i class="fas fa-book-open"></i>
+			  <i class="material-icons nav__icon">home</i>
 			  <p>Home</p>
 			</li>
 			<li>
 			  <i class="fas fa-users"></i>
+			  <i class="material-icons nav__icon">menu</i>
 			  <p>Menu</p>
 			</li>
 		  </ul>
@@ -139,6 +155,29 @@ nav ul li.active {
   color: #52b459;
 }
 
+.loader {
+  border: 5px solid whitesmoke; /* Light grey */
+  border-top: 5px solid #148f1c; /* Blue */
+  border-radius: 50%;
+  width: 70px;
+  height: 70px;
+  animation: spin 2s linear infinite;
+  justify-content: center;
+  display: flex;
+  left: 40%;
+  top: 25%;
+  position: absolute;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
 	</style>
+
+
+
+<script src="js/redeem.js"></script>
 </body>
 </html>
