@@ -26,157 +26,119 @@
 
 <body class="body">
 
-	<div class="phone">
-		<div
-		  class="content show"
-	>
-	<iframe style="width: 100%; height: 100%; z-index: 1;" src="Redeem.html" name="targetframe" allowTransparency="true" scrolling="true" frameborder="0" >
-	</iframe></div>
-		
-
-		<div
-		  class="content" style="width: 100%; height: 100%;"
-		>
-		
-		<iframe style="width: 100%; height: 100%; pointer-events: unset!important;" src="start.html" name="targetframe" allowTransparency="true" scrolling="true" frameborder="0" >
+		<div id="map"></div> 
+		<!-- style="z-index: 3;" -->
+	<div id="frameRedeem" style="width: 100%;height: 100%; z-index: 1;">
+		<iframe src="Redeem.html" name="targetframe" allowTransparency="true" scrolling="yes" frameborder="0" style="width: 100%;height: 100%;
+		z-index: 2;">
 		</iframe>
-	
-	</div>
-
-		<div class="phone">
-			<div
-			  class="content shows"
-		>
-		
-		<iframe style="width: 100%; height: 100%;" src="menu.html" name="targetframe" allowTransparency="true" scrolling="true" frameborder="0" >
-		</iframe>
-	
-	
-	
-	</div>
-	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-		<nav>
-		  <ul>
-			<li>
-			  <i class="fas fa-box"></i>
-			  <i class="material-icons nav__icon">redeem</i>
-			  <p>Redeem</p>
-			</li>
-			<li>
-			  <i class="fas fa-book-open"></i>
-			  <i class="material-icons nav__icon">home</i>
-			  <p>Home</p>
-			</li>
-			<li>
-			  <i class="fas fa-users"></i>
-			  <i class="material-icons nav__icon">menu</i>
-			  <p>Menu</p>
-			</li>
-		  </ul>
-		</nav>
 	  </div>
+
+		
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<nav class="nav">
+	  <a id="frame1" class="nav__link">
+		<i class="material-icons nav__icon">redeem</i>
+		<span class="nav__text">Redeem</span>
+	  </a>
+
+	  <script>
+		document.getElementById('frameRedeem').style.display = "none";
+		let frame1Btn=document.getElementById('frame1')
+		frame1Btn.addEventListener('click', function(){
+			//window.location.href="Redeem.html"; 
+			document.getElementById('map').style.display = "none";
+			frame1Btn.className='nav__link nav__link--active';
+			document.getElementById('homebtn').className='nav__link';
+			document.getElementById('frameRedeem').style.display = "block";
+
+			document.getElementById('homebtn').addEventListener('click', function(){
+            //window.location.href="Redeem.html";
+            document.getElementById('map').style.display = "block";
+			document.getElementById('homebtn').className='nav__link nav__link--active';
+			frame1Btn.className='nav__link';
+			document.getElementById('frameRedeem').style.display = "none";
+            
+          })
+			
+		})
+	  </script>
+
+	  <a id="homebtn" class="nav__link nav__link--active">
+		<i class="material-icons nav__icon">home</i>
+		<span class="nav__text">Home</span>
+	  </a>
+	  <!-- <a href="#" class="nav__link">
+		<i class="material-icons nav__icon">person</i>
+		<span class="nav__text">Profile</span>
+	  </a> -->
+	  <a href="menu.html" class="nav__link">
+		<i class="material-icons nav__icon">list</i>
+		<span class="nav__text">Menu</span>
+	  </a>
+	</nav>
+	
+
+
+	<div class="alert" id="alertdiv">
+		<span class="closebtnAlert" id="closeAlert">&times;</span>
+		<strong>Too far from the current station!</strong> Please come nearby.
+	</div>
+
+	<div class="alert" id="fullbagAlert">
+		<span class="closebtnAlert" id="closeFullbagAlert">&times;</span>
+		<strong>This station is full</strong> Please contact employee or use another station.
+	</div>
+
+	<!--station overlay-->
+	<div id="myModal" class="modal">
+		<div class="modal-content">
+			<div class="returnstationcontent">
+				<span class="close">&times;</span>
+					<div class="itemstation" style="flex-direction: row; top: 80%;">
+						<h2 id="returnstation" style="color: #52b459; text-align: center;">Station 1002</h2>
+					</div>
+
+					<div style="display: flex; flex-direction: row; justify-content: center;" id="applyModalWindowResize">
+
+					<img src="Images/stationcycl.png" style="width:115px; height:170px;">
+					
+					<div class="itemstation" style="display: flex;flex-direction: column; width: 40%;">
+					
+					<div class="itemstation">
+						<div class="itemsicons" style="display: flex; max-width: 110px; margin-right: 5px; 
+				position: relative;left: 35%;align-items: center;"><img src="Images/store.png" style="width:29px; height:39px;">
+							<p id="place" style="color: black; padding-left: 20px;">Deli De Luca</p>
+						</div>
+					</div>
+
+					<div class="itemstation">
+						<div class="itemsicons" style=" display: flex; max-width: 110px; margin-right: 5px; 
+				position: relative;left: 35%;align-items: center;"><img src="Images/placemark.png" style="width:29px; height:39px;">
+							<p id="adress" style="color: black; padding-left: 20px;">Karl Johansgata</p>
+						</div>
+					</div>
+
+					<div class="itemstation">
+						<div class="itemsicons" style=" display: flex; max-width: 120px; margin-right: 5px; 
+				position: relative;left: 35%;align-items: center;"><img src="Images/recyclebin.png" style="width:29px; height:39px;">
+							<p id="bagQauntity" style="color: black; padding-left: 20px;">100%</p>
+						</div>
+					</div>
+
+					</div>
+
+				</div>
+
+				<div class="itemstation" style="display: flex;justify-content: center;padding: 15px;"><button class="scannerbtn" id="scannbtn">Recycle</button></div>
+			</div>
+
+		</div>
+
+		
+	</div>
 
 	
 	<script src="js/home.js"></script>
-
-	<style>
-		@import url("https://fonts.googleapis.com/css?family=Open+Sans&display=swap");
-
-* {
-  box-sizing: border-box;
-}
-
-body {
-  background-color: #ffffff;
-  font-family: "Open Sans", sans-serif;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-  margin: 0;
-}
-
-.phone {
-  position: relative;
-  overflow: hidden;
-  border: 0px solid #eee;
-  height: 100%;
-  width: 100%;
-}
-
-.phone .content {
-  opacity: 0;
-  object-fit: cover;
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: calc(100% - 60px);
-  width: 100%;
-  transition: opacity 0.4s ease;
-}
-
-.phone .content.show {
-  opacity: 1;
-}
-
-nav {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  margin-top: -5px;
-  width: 100%;
-}
-
-nav ul {
-  background-color: #fff;
-  display: flex;
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
-  height: 60px;
-}
-
-nav li {
-  color: black;
-  cursor: pointer;
-  flex: 1;
-  padding: 10px;
-  text-align: center;
-}
-
-nav ul li p {
-  font-size: 12px;
-  margin: 2px 0;
-}
-
-nav ul li:hover,
-nav ul li.active {
-  color: #52b459;
-}
-
-.loader {
-  border: 5px solid whitesmoke; /* Light grey */
-  border-top: 5px solid #148f1c; /* Blue */
-  border-radius: 50%;
-  width: 70px;
-  height: 70px;
-  animation: spin 2s linear infinite;
-  justify-content: center;
-  display: flex;
-  left: 40%;
-  top: 25%;
-  position: absolute;
-}
-
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
-
-	</style>
-
-
-
-<script src="js/redeem.js"></script>
 </body>
 </html>
