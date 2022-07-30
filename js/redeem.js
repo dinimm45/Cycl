@@ -7,6 +7,19 @@ AOS.init();
 
 
 
+//Firebase
+const firebaseConfig = {
+  apiKey: "AIzaSyDTR4_vw3x8pTxIAiS8Y0-3T4APCwotpyg",
+  authDomain: "cycl-77b6c.firebaseapp.com",
+  databaseURL: "https://cycl-77b6c.firebaseio.com",
+  projectId: "cycl-77b6c",
+  storageBucket: "cycl-77b6c.appspot.com",
+  messagingSenderId: "139900263133",
+  appId: "1:139900263133:web:9c72ae1fd6569fe6a1d934",
+  measurementId: "G-VPV104NQQW",
+};
+
+firebase.initializeApp(firebaseConfig);
 
 function donateCC() {
   inputDonate = parseInt(document.getElementById("donateInput").value);
@@ -95,7 +108,7 @@ const tasks = [
     image: "Images/jonk.png",
     title: "10% at JØNK",
     price: "10 CC",
-    description: "Get 10% off from the menu.",
+    description: "Get 10% off for anything on the menu.",
     button: "Claim",
     descriptionB: "*Drinks are not included",
     list: " must be presented when ordering at <a href=https://www.google.no/maps/place/J%C3%B8nk/@59.9124912,10.7616621,15z/data=!4m2!3m1!1s0x0:0xa8b7a134981b977?sa=X&ved=2ahUKEwiG_qrT0cP3AhWvRfEDHY4MAeIQ_BJ6BAhZEAU/ target=_blank> JØNK</a>",
@@ -270,7 +283,7 @@ async function getCoupon(task, type) {
   };
 
   //type definerer hvilket kort innholdet skal være i,kort 3 finnes ikke
-  if (type === "5") {
+  if (type === "3") {
     const req = await fetch(
       "https://api.adtraction.com/v2/affiliate/offers/?token=486DD3496AAA36C1B9D6D7F92C66A3073084E57F",
       {
