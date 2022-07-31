@@ -109,10 +109,19 @@
 			document.getElementById('map').style.display = "none";
 			document.getElementById('frameRedeem').style.display = "none";
 			
-			window.location.href = "login.html";
+			firebase.auth().onAuthStateChanged((FirebaseUser) => {
+    if (FirebaseUser) {
+ 
+      console.log(FirebaseUser);
+    } else {
+		window.location.href = "login.html";
       console.log("not logged in");
 	  window.close();
       return
+
+      
+    }
+  })
 			
           })
 		  
