@@ -27,44 +27,29 @@
 <body class="body">
 
 		<div id="map"></div> 
-		<!-- style="z-index: 3;" -->
+		<!-- RedeemFrame -->
 	<div id="frameRedeem" style="width: 100%;height: 100%; z-index: 1;">
 		<iframe src="Redeem.html" name="targetframe" allowTransparency="true" scrolling="yes" frameborder="0" style="width: 100%;height: 100%;
 		z-index: 2;">
 		</iframe>
 	  </div>
 
+     <!-- MenuFrame -->
+	  <div id="MenuFrame" style="width: 100%;height: 100%; z-index: 1;">
+		<iframe src="menu.html" name="targetframe" allowTransparency="true" scrolling="yes" frameborder="0" style="width: 100%;height: 100%;
+		z-index: 1;">
+		</iframe>
+	  </div>
+
 		
 		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
 	<nav class="nav">
-	  <a id="frame1" class="nav__link">
+	  <a id="redeemNavBtn" class="nav__link">
 		<i class="material-icons nav__icon">redeem</i>
 		<span class="nav__text">Redeem</span>
 	  </a>
-
-	  <script>
-		document.getElementById('frameRedeem').style.display = "none";
-		let frame1Btn=document.getElementById('frame1')
-		frame1Btn.addEventListener('click', function(){
-			//window.location.href="Redeem.html"; 
-			document.getElementById('map').style.display = "none";
-			frame1Btn.className='nav__link nav__link--active';
-			document.getElementById('homebtn').className='nav__link';
-			document.getElementById('frameRedeem').style.display = "block";
-
-			document.getElementById('homebtn').addEventListener('click', function(){
-            //window.location.href="Redeem.html";
-            document.getElementById('map').style.display = "block";
-			document.getElementById('homebtn').className='nav__link nav__link--active';
-			frame1Btn.className='nav__link';
-			document.getElementById('frameRedeem').style.display = "none";
-            
-          })
-			
-		})
-	  </script>
-
-	  <a id="homebtn" class="nav__link nav__link--active">
+	  <a id="framebtnHome" class="nav__link nav__link--active">
 		<i class="material-icons nav__icon">home</i>
 		<span class="nav__text">Home</span>
 	  </a>
@@ -72,11 +57,47 @@
 		<i class="material-icons nav__icon">person</i>
 		<span class="nav__text">Profile</span>
 	  </a> -->
-	  <a href="menu.html" class="nav__link">
+	  <a id="frameMenu" class="nav__link">
 		<i class="material-icons nav__icon">list</i>
 		<span class="nav__text">Menu</span>
 	  </a>
 	</nav>
+
+	<script>
+		 //RedeemmFramme
+		document.getElementById('frameRedeem').style.display = "none";
+		let redeemMnBtn=document.getElementById('redeemNavBtn')
+		let HomeMnBtn=document.getElementById('framebtnHome')
+		redeemMnBtn.addEventListener('click', function(){
+			document.getElementById('map').style.display = "none";
+			redeemMnBtn.className='nav__link nav__link--active';
+			HomeMnBtn.className='nav__link';
+			document.getElementById('frameRedeem').style.display = "block";
+			document.getElementById('MenuFrame').style.display = "none";
+			document.getElementById('frameMenu').className='nav__link';
+			alert('redeembtn')
+			
+		})
+		 //HomeFrame
+		   HomeMnBtn.addEventListener('click', function(){
+            document.getElementById('map').style.display = "block";
+			HomeMnBtn.className='nav__link nav__link--active';
+			redeemNavBtn.className='nav__link';
+			document.getElementById('frameRedeem').style.display = "none";
+			document.getElementById('frameMenu').className='nav__link';
+			alert('home')
+            
+          })
+		              //MenuFrame
+		document.getElementById('frameMenu').addEventListener('click', function(){
+            document.getElementById('MenuFrame').style.display = "block";
+			document.getElementById('frameMenu').className='nav__link nav__link--active';
+			HomeMnBtn.className='nav__link';
+			redeemNavBtn.className='nav__link';
+			document.getElementById('map').style.display = "none";
+			document.getElementById('frameRedeem').style.display = "none";
+          })
+	  </script>
 	
 
 
