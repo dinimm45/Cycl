@@ -75,7 +75,20 @@
 			document.getElementById('frameRedeem').style.display = "block";
 			document.getElementById('MenuFrame').style.display = "none";
 			document.getElementById('frameMenu').className='nav__link';
-			alert('redeembtn')
+
+			firebase.auth().onAuthStateChanged((FirebaseUser) => {
+    if (FirebaseUser) {
+ 
+      console.log(FirebaseUser);
+    } else {
+		window.location.href = "login.html";
+      console.log("not logged in");
+	  window.close();
+      return
+
+      
+    }
+  });
 			
 		})
 		 //HomeFrame
@@ -85,7 +98,6 @@
 			redeemNavBtn.className='nav__link';
 			document.getElementById('frameRedeem').style.display = "none";
 			document.getElementById('frameMenu').className='nav__link';
-			alert('home')
             
           })
 		              //MenuFrame
@@ -96,7 +108,14 @@
 			redeemNavBtn.className='nav__link';
 			document.getElementById('map').style.display = "none";
 			document.getElementById('frameRedeem').style.display = "none";
+			
+			window.location.href = "login.html";
+      console.log("not logged in");
+	  window.close();
+      return
+			
           })
+		  
 	  </script>
 	
 
