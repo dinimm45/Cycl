@@ -31,6 +31,10 @@
     }
   }
 
+  document.getElementById('closeLogin').addEventListener('click',function(){
+    location.href='home.html'
+  })
+
   btnlogin.addEventListener("click", (e) => {
     //get email and passwrd
     if (txtemail.value == "") {
@@ -46,6 +50,9 @@
         .then(function (firebaseUser) {
           document.getElementById('loginload').style.display="block"
           // Success
+          window.close();
+  window.location.href = "loginmenu.html";
+alert('we in')
         })
         .catch(function (error) {
           document.getElementById("loginmessage").innerHTML =
@@ -115,10 +122,15 @@
   //if user is loged in forward to the map.
   firebase.auth().onAuthStateChanged((FirebaseUser) => {
     if (FirebaseUser) {
-      window.location.href = "home.html";
       console.log(FirebaseUser);
+      window.close();
+
+
     } else {
       console.log("not logged in");
+      return
+
+      
     }
   });
 })();
