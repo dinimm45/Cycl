@@ -51,7 +51,7 @@
           document.getElementById('loginload').style.display="block"
           // Success
           window.close();
-  window.location.href = "loginmenu.html";
+  window.location.href = "home.html";
 alert('we in')
         })
         .catch(function (error) {
