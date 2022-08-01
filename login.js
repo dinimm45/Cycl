@@ -1,69 +1,139 @@
-(function(){
-
-const firebaseConfig = {
-  apiKey: "AIzaSyAV2_eu5cnRDNp5eq9AjTuX8q0XiRT3EZw",
-  authDomain: "cycl-e6998.firebaseapp.com",
-  databaseURL: "https://cycl-e6998.firebaseio.com",
-  projectId: "cycl-e6998",
-  storageBucket: "cycl-e6998.appspot.com",
-  messagingSenderId: "16228296144",
-  appId: "1:16228296144:web:a60e1aaa1ee9d8f4aa05d5",
-  measurementId: "G-3BVVW1GDNC"
-};
-// Initialize Firebase
-firebase.initializeApp(firebaseConfig);
-//get email and pass
-var txtemail=document.getElementById("email");
-var resetbutton=document.getElementById("forgotpass");
-var txtpassword=document.getElementById("passwrd");
-var btnlogin=document.getElementById("login");
-var btnsignup=document.getElementById("signup");
-var btnlLogout=document.getElementById("logout");
-var database = firebase.database();
-
-
-btnlogin.addEventListener("click", e=>{
-  //get email and passwrd
-  if (txtemail.value=="") {
-    alert("please write your email adress")
-
-  }else {
-
-    var email=txtemail.value;
-    var password=txtpassword.value;
-    const auth= firebase.auth();
-  //sign in
-    const promise = auth.signInWithEmailAndPassword(email,password);
-    promise.catch(e => console.log(e.message));
-
-  }
-
-});
-//add singup event
-btnsignup.addEventListener("click", e=>{
+(function () {
+  const firebaseConfig = {
+    apiKey: "AIzaSyDTR4_vw3x8pTxIAiS8Y0-3T4APCwotpyg",
+    authDomain: "cycl-77b6c.firebaseapp.com",
+    databaseURL: "https://cycl-77b6c.firebaseio.com",
+    projectId: "cycl-77b6c",
+    storageBucket: "cycl-77b6c.appspot.com",
+    messagingSenderId: "139900263133",
+    appId: "1:139900263133:web:9c72ae1fd6569fe6a1d934",
+    measurementId: "G-VPV104NQQW",
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
   //get email and pass
-  //TODO CHECK 5 REAL EMAIL
-  window.location.href=("member.html");
+  var txtemail = document.getElementById("email");
+  var resetbutton = document.getElementById("forgotpass");
+  var txtpassword = document.getElementById("passwrd");
+  var btnlogin = document.getElementById("login");
+  var btnsignup = document.getElementById("signup");
+  var btnlLogout = document.getElementById("logout");
+  var database = firebase.database();
+  const signInWithFb = document.getElementById("signInWithFb");
 
-
-});
-
-resetbutton.addEventListener("click",function() {
-  window.location.href=("resetpass.html");
-});
-//realtile listener
-//we can check if we are logged in from here aswell
-//if user is loged in forward to the map.
-firebase.auth().onAuthStateChanged(FirebaseUser => {
-  if (FirebaseUser) {
-    window.location.href=("index.html")
-    console.log(FirebaseUser);
-  }else {
-    console.log("not logged in");
+  function keyDown(e) {
+    var e = window.event || e;
+    var key = e.keyCode;
+    //space pressed
+    if (key == 32) {
+      //space
+      e.preventDefault();
+    }
   }
-});
 
-}());
+  document.getElementById('closeLogin').addEventListener('click',function(){
+    location.href='home.html'
+  })
+
+  btnlogin.addEventListener("click", (e) => {
+    //get email and passwrd
+    if (txtemail.value == "") {
+      alert("please write your email adress");
+    } else {
+      var email = txtemail.value;
+      var password = txtpassword.value;
+      const auth = firebase.auth();
+      //sign in
+      firebase
+        .auth()
+        .signInWithEmailAndPassword(email, password)
+        .then(function (firebaseUser) {
+          document.getElementById('loginload').style.display="block"
+          // Success
+          window.close();
+  window.location.href = "loginmenu.html";
+alert('we in')
+        })
+        .catch(function (error) {
+          document.getElementById("loginmessage").innerHTML =
+            "Wrong email or password. Try again";
+          // Error Handling
+        });
+    }
+  });
+
+  window.addEventListener("load", function () {
+    if (document.body.clientWidth < 500) {
+      document.getElementById("appLogoID").style.width = "200px";
+    } else {
+      document.getElementById("appLogoID").style.width = "160px";
+    }
+  });
+
+  window.addEventListener("resize", function () {
+    if (document.body.clientWidth < 500) {
+      document.getElementById("appLogoID").style.width = "100px";
+    } else {
+      document.getElementById("appLogoID").style.width = "160px";
+    }
+  });
+
+  //login with google
+
+  /*signInWithGoogle.addEventListener("click", function () {
+    const auth = firebase.auth();
+    const googleProvider = new firebase.auth.GoogleAuthProvider();
+    auth
+      .signInWithRedirect(googleProvider)
+      .then(() => {
+        if (FirebaseUser) {
+          window.location.href = "home2.html";
+          console.log(FirebaseUser);
+        } else {
+          console.log("not logged in");
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  });
+  //login with facebook
+  signInWithFb.addEventListener("click", function () {
+    const auth = firebase.auth();
+    const fbProvider = new firebase.auth.FacebookAuthProvider();
+    auth
+      .signInWithRedirect(fbProvider)
+      .then(() => {
+        if (FirebaseUser) {
+          window.location.href = "home2.html";
+          console.log(FirebaseUser);
+        } else {
+          console.log("not logged in");
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    console.log(fbProvider);
+  });*/
+  
+  //realtile listener
+  //we can check if we are logged in from here aswell
+  //if user is loged in forward to the map.
+  firebase.auth().onAuthStateChanged((FirebaseUser) => {
+    if (FirebaseUser) {
+      console.log(FirebaseUser);
+      window.close();
+
+
+    } else {
+      console.log("not logged in");
+      return
+
+      
+    }
+  });
+})();
 
 // TODO: Verifes email adresses
 // TODO: email addresses has to be godkjent
